@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photo and Text Rows</title>
+<link rel="stylesheet" href="styles.css">
+
+<style>
+    /* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+}
+.container {
+            width: 95%;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+.row {
+  display: flex;
+  align-items: center; /* Vertically aligns content */
+  gap: 20px; /* Space between the image and text */
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px; /* Adds spacing between rows */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.row img {
+  width: 300px; /* Fixed width for the image */
+  height: auto;
+  border-radius: 8px;
+}
+
+.row .text {
+  flex: 1; /* Allows text to take up the remaining space */
+}
+
+.row .text h2 {
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+  color: #444;
+}
+
+.row .text p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Alternate rows */
+.row:nth-child(even) {
+  flex-direction: row-reverse; /* Image on the right for even rows */
+}
+.placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px; /* Match your image width */
+  height: 200px; /* Adjust as needed */
+  background-color: #f0f0f0;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  color: #555;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+<div class="container">
+      <header>
+            <div class="logo">Perspective</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="how-it-works.html">How It Works</a>
+                <a href="features.html">Features</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+            </nav>
+        </header>
+  <!-- Row 1 -->
+  <div class="row">
+    <img src="perspective_logo.png" alt="Opinion Comparison">
+    <div class="text">
+      <h2>Opinion Comparison</h2>
+      <p>Compare your opinions and see others’ opinions. Discover where they align and differ.</p>
+    </div>
+  </div>
+  <!-- Row 2 -->
+  <div class="row">
+    <div class="placeholder">
+        <p>Coming Soon!</p>
+      </div>
+          <div class="text">
+      <h2>Topics</h2>
+      <p>Engage in meaningful discussions on topics that matter to you.</p>
+    </div>
+  </div>
+  <!-- Row 3 -->
+  <div class="row">
+    <div class="placeholder">
+        <p>Coming Soon!</p>
+      </div>  
+        <div class="text">
+      <h2>Create Local Communities</h2>
+      <p>Create a community with up to ten people near you, whether at an event, a bar, or anywhere else.</p>
+    </div>
+  </div>
+  <!-- Row 4 -->
+  <div class="row">
+    <div class="placeholder">
+        <p>Coming Soon!</p>
+      </div>   
+       <div class="text">
+      <h2>Events</h2>
+      <p>Meet your community in person at a mutually agreed location.</p>
+    </div>
+  </div>
+  <footer>
+    <p>&copy; 2024 Perspective. All rights reserved.</p>
+  </footer>
+</div>
+</body>
+</html>

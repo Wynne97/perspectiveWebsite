@@ -1,0 +1,254 @@
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-light: #f4f6f7;
+            --text-dark: #2c3e50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background-light);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 2rem;
+            color: var(--text-dark);
+        }
+
+        .hero-content p {
+            font-size: 1rem;
+            margin: 1rem 0;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta:hover {
+            background-color: #2980b9;
+        }
+
+        /* Features Section */
+        .features {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .feature p {
+            font-size: 0.9rem;
+        }
+
+        /* Signup Section */
+        .signup {
+            margin-top: 2rem;
+            text-align: center;
+            background-color: white;
+            padding: 2rem 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .signup h2 {
+            font-size: 1.5rem;
+        }
+
+        .signup p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .signup input {
+            width: 100%;
+            max-width: 300px;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .signup button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .signup button:hover {
+            background-color: #27ae60;
+        }
+
+        footer {
+            background-color: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .hero {
+                flex-direction: row;
+                text-align: left;
+            }
+
+            .hero-content {
+                flex: 1;
+            }
+
+            .hero-image {
+                flex: 1;
+            }
+
+            .features {
+                flex-direction: row;
+            }
+
+            .feature {
+                flex: 1;
+            }
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+      
+          
+          .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+          }
+          
+          .row {
+            display: flex;
+            align-items: center; /* Vertically aligns content */
+            gap: 20px; /* Space between the image and text */
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px; /* Adds spacing between rows */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          }
+          
+          .row img {
+            width: 300px; /* Fixed width for the image */
+            height: auto;
+            border-radius: 8px;
+          }
+          
+          .row .text {
+            flex: 1; /* Allows text to take up the remaining space */
+          }
+          
+          .row .text h2 {
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+            color: #444;
+          }
+          
+          .row .text p {
+            font-size: 1rem;
+            line-height: 1.6;
+          }
+          
+          /* Alternate rows */
+          .row:nth-child(even) {
+            flex-direction: row-reverse; /* Image on the right for even rows */
+          }

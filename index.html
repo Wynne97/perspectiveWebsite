@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perspective - Connect, Learn, Grow</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Perspective</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="how-it-works.html">How It Works</a>
+                <a href="features.html">Features</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Connect. Learn. Grow.</h1>
+                <p>Perspective is more than a social app. It's a platform designed to improve your social skills, build meaningful connections, and expand your understanding of others.</p>
+                <a href="https://testflight.apple.com/join/UVmPWcYr" class="cta">Join the Community</a>
+            </div>
+            <div class="hero-image">
+                <img src="perspective_logo.png" alt="Perspective App Interface">
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature">
+                <h3>Community Matching</h3>
+                <p>Find like-minded individuals based on shared perspectives, opinions, and interests.</p>
+            </div>
+            <div class="feature">
+                <h3>Social Learning</h3>
+                <p>Engage in thoughtful interactions that help you develop better communication skills.</p>
+            </div>
+            <div class="feature">
+                <h3>Real-World Events</h3>
+                <p>Turn online connections into real-life meetups, fostering genuine relationships.</p>
+            </div>
+        </section>
+
+        <section class="signup">
+            <h2>Be Part of the Journey</h2>
+            <p>Get notified when Perspective launches and transform your social experience.</p>
+            <form id="email-form">
+                <input type="email" id="email" placeholder="Enter your email" required>
+                <button type="submit">Notify Me</button>
+            </form>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Perspective. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('email-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            alert('Thank you! We will notify you when Perspective launches.');
+        });
+    </script>
+</body>
+</html>
