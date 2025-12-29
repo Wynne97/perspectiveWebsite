@@ -231,7 +231,7 @@ img {
 .logo img {
   height: 40px;
   width: 200px;
-  transform: scale(2.5);
+ /* transform: scale(2.5);*/
   transform-origin: left center;
   margin-right: 40px;
   padding: 10px; /* Add padding around the image */
