@@ -234,11 +234,15 @@ img {
   transform: scale(2.5);
   transform-origin: left center;
   margin-right: 40px;
-  padding: 12px; /* Padding inside the border */
-  border: 2px solid var(--primary-color); /* Border using your primary color */
-  border-radius: 15px; /* Rounded corners */
-  background-color: white; /* White background */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft shadow */
+  padding: 8px 15px; /* Different horizontal and vertical padding */
+  border-radius: 10px; /* Softer rounded corners */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+/* Optional hover effect */
+.logo img:hover {
+  background-color: rgba(52, 152, 219, 0.1); /* Light blue tint on hover */
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
 }
 
 .main-nav {
