@@ -229,11 +229,10 @@ img {
 }
 
 .logo img {
-  height: 100px; /* Much larger */
-  width: auto;
-  min-width: 250px; /* Wider minimum */
+  width: 280px; /* Fixed width */
+  height: auto; /* Let height adjust */
+  max-height: 70px; /* Limit height */
   object-fit: contain;
-  margin: -20px 0; /* Negative margin to compensate for height */
 }
 
 .main-nav {
