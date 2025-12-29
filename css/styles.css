@@ -229,10 +229,11 @@ img {
 }
 
 .logo img {
-  width: 280px; /* Fixed width */
-  height: auto; /* Let height adjust */
-  max-height: 70px; /* Limit height */
-  object-fit: contain;
+  height: 40px;
+  width: 200px;
+  transform: scale(2.5); /* Force it to be 2.5x bigger */
+  transform-origin: left center; /* Scale from the left side */
+  margin-right: 40px; /* Add space after scaling */
 }
 
 .main-nav {
