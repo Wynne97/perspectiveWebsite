@@ -230,8 +230,10 @@ img {
 }
 
 .logo img {
-  height: 40px;
-  margin-right: var(--space-sm);
+  height: 60px; /* Increased from 40px */
+  width: auto; /* This maintains aspect ratio */
+  max-width: 250px; /* Prevents it from getting too wide */
+  object-fit: contain; /* Ensures the image fits properly */
 }
 
 .main-nav {
