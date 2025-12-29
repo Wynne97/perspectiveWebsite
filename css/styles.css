@@ -230,12 +230,11 @@ img {
 }
 
 .logo img {
-  height: 60px; /* Increased from 40px */
-  width: auto; /* This maintains aspect ratio */
-  max-width: 250px; /* Prevents it from getting too wide */
-  object-fit: contain; /* Ensures the image fits properly */
+  height: 80px; /* Increased significantly */
+  width: auto; 
+  min-width: 200px; /* Force minimum width */
+  object-fit: contain;
 }
-
 .main-nav {
   display: flex;
   gap: var(--space-lg);
