@@ -1,6 +1,6 @@
 /* 
- * Perspective - Enhanced Website Styles
- * A modern, professional design for the Perspective app website
+ * iPerspective - Enhanced Website Styles
+ * A modern, professional design for the iPerspective app website
  */
 
 :root {
@@ -376,12 +376,12 @@ img {
 .hero-image img {
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-lg);
-  transform: perspective(1000px) rotateY(-5deg);
+  transform: iPerspective(1000px) rotateY(-5deg);
   transition: all 0.5s ease;
 }
 
 .hero-image img:hover {
-  transform: perspective(1000px) rotateY(0);
+  transform: iPerspective(1000px) rotateY(0);
 }
 
 .floating-element {
