@@ -220,7 +220,6 @@ img {
   align-items: center;
   padding: var(--space-md) 0;
 }
-
 .logo {
   font-size: 1.5rem;
   font-weight: 700;
@@ -230,11 +229,13 @@ img {
 }
 
 .logo img {
-  height: 80px; /* Increased significantly */
-  width: auto; 
-  min-width: 200px; /* Force minimum width */
+  height: 100px; /* Much larger */
+  width: auto;
+  min-width: 250px; /* Wider minimum */
   object-fit: contain;
+  margin: -20px 0; /* Negative margin to compensate for height */
 }
+
 .main-nav {
   display: flex;
   gap: var(--space-lg);
