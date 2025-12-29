@@ -234,10 +234,11 @@ img {
   transform: scale(2.5);
   transform-origin: left center;
   margin-right: 40px;
-  padding: 10px; /* Add padding around the image */
-  background-color: rgba(255, 255, 255, 0.1); /* Optional: subtle background */
-  border-radius: 12px; /* Rounded corners */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for depth */
+  padding: 12px; /* Padding inside the border */
+  border: 2px solid var(--primary-color); /* Border using your primary color */
+  border-radius: 15px; /* Rounded corners */
+  background-color: white; /* White background */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft shadow */
 }
 
 .main-nav {
