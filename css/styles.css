@@ -220,6 +220,7 @@ img {
   align-items: center;
   padding: var(--space-md) 0;
 }
+
 .logo {
   font-size: 1.5rem;
   font-weight: 700;
@@ -231,21 +232,77 @@ img {
 .logo img {
   height: 60px;
   width: 200px;
-  transform: scale(2.5);
-  transform-origin: left center;
-  margin-right: 40px;
+  object-fit: contain;
   padding: 10px; /* Add padding around the image */
- /* background-color: rgba(255, 255, 255, 0.1);  */
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle background */
   border-radius: 12px; /* Rounded corners */
- /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
-/*
 
-.logo img:hover {
-  background-color: rgba(52, 152, 219, 0.1); 
-  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+/* Update header padding for better spacing */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(5px);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  padding: 10px 0; /* Add vertical padding */
 }
-*/
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md) 0;
+}
+
+/* Hero section - increase top padding to account for header */
+.hero {
+  padding: 8rem 0 5rem; /* Increased from 8rem to give more space */
+  position: relative;
+  overflow: hidden;
+  background-color: var(--background-white);
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .logo img {
+    height: 45px; /* Slightly smaller on mobile */
+    width: 150px; /* Narrower on mobile */
+    padding: 8px;
+    border-radius: 10px;
+  }
+  
+  .site-header {
+    padding: 8px 0; /* Less padding on mobile */
+  }
+  
+  .hero {
+    padding: 6rem 0 3rem; /* Adjust hero padding for mobile */
+  }
+  
+  .header-container {
+    padding: var(--space-sm) 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .logo img {
+    height: 40px; /* Even smaller on small phones */
+    width: 130px;
+    padding: 6px;
+    border-radius: 8px;
+  }
+  
+  .hero {
+    padding: 5rem 0 2rem; /* Further adjust for small screens */
+  }
+}
+
 .main-nav {
   display: flex;
   gap: var(--space-lg);
