@@ -221,38 +221,6 @@ img {
   padding: var(--space-md) 0;
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--primary-color);
-  display: flex;
-  align-items: center;
-}
-
-.logo img {
-  height: 60px;
-  width: 200px;
-  object-fit: contain;
-  padding: 10px; /* Add padding around the image */
-  background-color: rgba(255, 255, 255, 0.1); /* Subtle background */
-  border-radius: 12px; /* Rounded corners */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-/* Update header padding for better spacing */
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(5px);
-  box-shadow: var(--shadow-sm);
-  transition: all 0.3s ease;
-  padding: 10px 0; /* Add vertical padding */
-}
-
 .header-container {
   display: flex;
   justify-content: space-between;
@@ -268,14 +236,58 @@ img {
   background-color: var(--background-white);
 }
 
-/* Mobile responsive adjustments */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: auto; /* Let height adjust naturally */
+  width: 240px; /* Set a good desktop width */
+  max-height: 70px; /* Prevent it from getting too tall */
+  object-fit: contain;
+  padding: 12px 16px; /* Nice padding */
+  background-color: rgba(255, 255, 255, 0.5); /* Subtle background */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Soft shadow */
+  transition: all 0.3s ease;
+}
+
+.logo img:hover {
+  background-color: rgba(52, 152, 219, 0.1); /* Slight blue tint on hover */
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+}
+
+/* Ensure proper spacing below header */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Mobile optimizations */
 @media (max-width: 768px) {
   .logo img {
-    height: 45px; /* Slightly smaller on mobile */
-    width: 150px; /* Narrower on mobile */
-    padding: 8px;
+    width: 180px; /* Smaller width on tablets */
+    max-height: 50px;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo img {
+    width: 140px; /* Even smaller on phones */
+    max-height: 40px;
+    padding: 6px 10px;
     border-radius: 10px;
   }
+}
   
   .site-header {
     padding: 8px 0; /* Less padding on mobile */
