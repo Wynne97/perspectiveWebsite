@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore the features of Perspective, the social app that connects people through shared interests, opinions, and locations.">
-    <title>Features - Perspective App</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <meta name="description" content="Explore the features of iPerspective - Opinion matching, micro-communities, relationship tracking, and more.">
+    <title>Features - iPerspective App</title>
+    <link rel="stylesheet" href="css/featureStyles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
@@ -14,10 +14,9 @@
     <!-- Header -->
     <header class="site-header">
         <div class="container header-container">
-            <div class="logo">
-                <img src="assets/images/perspective_logo.png" alt="Perspective Logo">
-                Perspective
-            </div>
+          <a href="#"  class="logo">
+                <img src="assets/images/logo.png" alt="iPerspective Logo">
+            </a>
             
             <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
                 <span></span>
@@ -35,25 +34,194 @@
         </div>
     </header>
 
-    <!-- Features Hero Section -->
+    <!-- Hero Section -->
     <section class="hero">
         <div class="container hero-container">
             <div class="hero-content">
                 <h1 class="hero-title">Powerful Features for <span class="highlight">Meaningful</span> Connections</h1>
-                <p class="hero-subtitle">Discover how Perspective helps you build genuine relationships through shared interests, opinions, and locations.</p>
+                <p class="hero-subtitle">Discover how iPerspective uses your opinions and perspectives to connect you with like-minded people in intimate micro-communities of up to 10 members.</p>
+                <div class="hero-cta">
+                    <a href="https://apps.apple.com/us/app/iperspective/id6745724034" class="app-store-btn">
+                        <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" 
+                             alt="Download on the App Store" style="height: 60px;">
+                    </a>
+                </div>
             </div>
             <div class="hero-image">
-                <img src="assets/images/perspective_logo.png" alt="Perspective App Features">
+                <div class="phone-frame phone-frame-hero">
+                    <img src="assets/images/community-members.png" alt="iPerspective App Community">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Core Features Section -->
+    <!-- Feature 1: Opinion Matching -->
+    <section class="feature-showcase" id="opinion-matching">
+        <div class="container">
+            <div class="feature-row">
+                <div class="feature-text">
+                    <span class="feature-label">01 — OPINION MATCHING</span>
+                    <h2>Discover Your Perspective</h2>
+                    <p>Answer thought-provoking questions like "What's your biggest motivator?" to reveal your unique perspective. Our matching algorithm connects you with people who share similar worldviews and values.</p>
+                    <div class="feature-tags">
+                        <span class="tag tag-primary">🎯 Same Mind Score</span>
+                        <span class="tag tag-secondary">✓ Accuracy Tracking</span>
+                        <span class="tag tag-accent">👁 Perspective Match</span>
+                    </div>
+                </div>
+                <div class="feature-screenshot">
+                    <div class="phone-frame">
+                        <img src="assets/images/ego-questions.png" alt="Opinion Matching - Ego Poll Feature">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature 2: Topics & Discussions -->
+    <section class="feature-showcase feature-showcase-alt" id="topics">
+        <div class="container">
+            <div class="feature-row feature-row-reverse">
+                <div class="feature-text">
+                    <span class="feature-label">02 — TOPICS & DISCUSSIONS</span>
+                    <h2>Explore What Matters</h2>
+                    <p>Browse topics across Career, Social, and more. See active discussions in your communities and discover what your connections are thinking about right now.</p>
+                    <div class="feature-tags">
+                        <span class="tag tag-warning">💬 Active Discussions</span>
+                        <span class="tag tag-primary">🔍 Topic Categories</span>
+                        <span class="tag tag-secondary">📊 52+ Questions</span>
+                    </div>
+                </div>
+                <div class="feature-screenshot">
+                    <div class="phone-frame">
+                        <img src="assets/images/topics-discussions.png" alt="Topics and Active Discussions">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature 3: Relationship Map -->
+    <section class="feature-showcase" id="relationships">
+        <div class="container">
+            <div class="feature-row">
+                <div class="feature-text">
+                    <span class="feature-label">03 — RELATIONSHIP MAP</span>
+                    <h2>Watch Connections Grow</h2>
+                    <p>Track how your relationships evolve from "New" to "Getting to Know" to "Connected." See analytics on your community engagement and unlock achievements as you build meaningful bonds.</p>
+                    <div class="feature-tags">
+                        <span class="tag tag-pink">❤️ Relationship Stages</span>
+                        <span class="tag tag-primary">📈 Analytics</span>
+                        <span class="tag tag-warning">🏆 Achievements</span>
+                    </div>
+                </div>
+                <div class="feature-screenshot">
+                    <div class="phone-frame">
+                        <img src="assets/images/relationship-map.png" alt="Relationship Map Feature">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature 4: Profile Discovery -->
+    <section class="feature-showcase feature-showcase-alt" id="profiles">
+        <div class="container">
+            <div class="feature-row feature-row-reverse">
+                <div class="feature-text">
+                    <span class="feature-label">04 — PROFILE DISCOVERY</span>
+                    <h2>Show Who You Really Are</h2>
+                    <p>Build your profile through meaningful questions across Demographics, Personality, and Social categories. Let others discover the real you through your authentic responses.</p>
+                    <div class="feature-tags">
+                        <span class="tag tag-primary">👤 Rich Profiles</span>
+                        <span class="tag tag-secondary">📝 Question Categories</span>
+                        <span class="tag tag-accent">🌍 Community Views</span>
+                    </div>
+                </div>
+                <div class="feature-screenshot">
+                    <div class="phone-frame">
+                        <img src="assets/images/profile-categories.png" alt="Profile Discovery Feature">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature 5: Community Recycle -->
+    <section class="feature-showcase" id="refresh">
+        <div class="container">
+            <div class="feature-row">
+                <div class="feature-text">
+                    <span class="feature-label">05 — FRESH CONNECTIONS</span>
+                    <h2>Always Something New</h2>
+                    <p>Communities refresh every 3 days to keep your social experience dynamic. Your progress and connections are archived so you never lose those meaningful moments.</p>
+                    <div class="feature-tags">
+                        <span class="tag tag-warning">🔄 3-Day Refresh</span>
+                        <span class="tag tag-secondary">✓ History Preserved</span>
+                        <span class="tag tag-primary">🌱 Fresh Opportunities</span>
+                    </div>
+                </div>
+                <div class="feature-screenshot">
+                    <div class="phone-frame">
+                        <img src="assets/images/community-recycle.png" alt="Community Recycle Feature">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature 6: Micro-Communities -->
+    <section class="feature-showcase feature-showcase-alt" id="communities">
+        <div class="container">
+            <div class="feature-row feature-row-reverse">
+                <div class="feature-text">
+                    <span class="feature-label">06 — MICRO-COMMUNITIES</span>
+                    <h2>Small Groups, Big Impact</h2>
+                    <p>Join intimate communities of up to 10 people who share your interests and location. See community stats, member profiles, and engage in focused discussions without the noise of large social networks.</p>
+                    <div class="feature-tags">
+                        <span class="tag tag-accent">👥 Max 10 Members</span>
+                        <span class="tag tag-primary">📍 Location-Based</span>
+                        <span class="tag tag-secondary">📊 Community Stats</span>
+                    </div>
+                </div>
+                <div class="feature-screenshot">
+                    <div class="phone-frame">
+                        <img src="assets/images/community-members.png" alt="Micro-Communities Feature">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature 7: Opinion Comparison -->
+    <section class="feature-showcase" id="comparison">
+        <div class="container">
+            <div class="feature-row">
+                <div class="feature-text">
+                    <span class="feature-label">07 — OPINION COMPARISON</span>
+                    <h2>See Where You Connect</h2>
+                    <p>Compare your views with others through an intuitive Venn diagram. Discover your agreement percentage, see where you differ, and understand what makes each connection unique.</p>
+                    <div class="feature-tags">
+                        <span class="tag tag-secondary">✓ 60% Agreement</span>
+                        <span class="tag tag-warning">🔄 30% Difference</span>
+                        <span class="tag tag-primary">👁 My Views vs Theirs</span>
+                    </div>
+                </div>
+                <div class="feature-screenshot">
+                    <div class="phone-frame">
+                        <img src="assets/images/opinion-comparison.png" alt="Opinion Comparison Venn Diagram">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Features Grid -->
     <section class="features" id="core-features">
         <div class="container">
             <div class="section-title">
-                <h2>Core Features</h2>
-                <p>The building blocks of the Perspective experience</p>
+                <h2>Everything You Need</h2>
+                <p>Built for meaningful connections, not endless scrolling</p>
             </div>
             
             <div class="features-grid">
@@ -63,18 +231,18 @@
                             <path d="M12 12.75c1.63 0 3.07.39 4.24.9 1.08.48 1.76 1.56 1.76 2.73V18H6v-1.61c0-1.18.68-2.26 1.76-2.73 1.17-.52 2.61-.91 4.24-.91zM4 13c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm1.13 1.1c-.37-.06-.74-.1-1.13-.1-.99 0-1.93.21-2.78.58C.48 14.9 0 15.62 0 16.43V18h4.5v-1.61c0-.83.23-1.61.63-2.29zM20 13c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm4 3.43c0-.81-.48-1.53-1.22-1.85-.85-.37-1.79-.58-2.78-.58-.39 0-.76.04-1.13.1.4.68.63 1.46.63 2.29V18H24v-1.57zM12 6c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z"/>
                         </svg>
                     </div>
-                    <h3 class="feature-title">Micro-Communities</h3>
-                    <p class="feature-description">Join intimate groups of up to 10 people who share your interests, opinions, and worldview. These small communities foster meaningful conversation and genuine connection.</p>
+                    <h3 class="feature-title">10-Person Limit</h3>
+                    <p class="feature-description">Intimate groups ensure everyone has a voice and connections stay meaningful.</p>
                 </div>
                 
                 <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z"/>
+                            <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
                         </svg>
                     </div>
-                    <h3 class="feature-title">Perspective Matching</h3>
-                    <p class="feature-description">Our unique algorithm connects you with people who share your worldview, interests, and values. Every three days, new communities are formed based on compatibility.</p>
+                    <h3 class="feature-title">3-Day Refresh</h3>
+                    <p class="feature-description">Communities recycle regularly so you're always meeting new compatible people.</p>
                 </div>
                 
                 <div class="feature-card animate-on-scroll">
@@ -83,142 +251,18 @@
                             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                         </svg>
                     </div>
-                    <h3 class="feature-title">Local Connections</h3>
-                    <p class="feature-description">Turn digital relationships into real-world friendships with people in your area. Find communities based on your city, state, or region.</p>
+                    <h3 class="feature-title">Location-Based</h3>
+                    <p class="feature-description">Connect with people near you for potential real-world meetups.</p>
                 </div>
                 
                 <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
                         </svg>
                     </div>
-                    <h3 class="feature-title">Interactive Questions</h3>
-                    <p class="feature-description">Engage with thought-provoking questions about photos, topics, and community members. Share your perspective and learn from others.</p>
-                </div>
-                
-                <div class="feature-card animate-on-scroll">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"/>
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">Community Discussions</h3>
-                    <p class="feature-description">Participate in focused conversations within your communities. Share ideas, opinions, and experiences in a respectful environment.</p>
-                </div>
-                
-                <div class="feature-card animate-on-scroll">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/>
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">Community Events</h3>
-                    <p class="feature-description">Organize and attend in-person meetups with your community members. Turn online connections into real-world relationships.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Community Types Section -->
-    <section class="community" id="communities">
-        <div class="container">
-            <div class="section-title">
-                <h2>Community Types</h2>
-                <p>Different ways to connect with like-minded individuals</p>
-            </div>
-            
-            <div class="community-grid">
-                <div class="community-card animate-on-scroll">
-                    <div class="community-image">
-                        <img src="assets/images/perspective_logo.png" alt="Interest-Based Community">
-                    </div>
-                    <div class="community-content">
-                        <h3 class="community-title">Interest-Based</h3>
-                        <p class="community-description">Connect with people who share your passions, hobbies, and interests. Whether you're into photography, hiking, cooking, or gaming, find your tribe.</p>
-                    </div>
-                </div>
-                
-                <div class="community-card animate-on-scroll">
-                    <div class="community-image">
-                        <img src="assets/images/perspective_logo.png" alt="Local Community">
-                    </div>
-                    <div class="community-content">
-                        <h3 class="community-title">Local</h3>
-                        <p class="community-description">Meet people in your neighborhood, city, or region who share your perspective. Build a local network of like-minded individuals.</p>
-                    </div>
-                </div>
-                
-                <div class="community-card animate-on-scroll">
-                    <div class="community-image">
-                        <img src="assets/images/perspective_logo.png" alt="Professional Community">
-                    </div>
-                    <div class="community-content">
-                        <h3 class="community-title">Professional</h3>
-                        <p class="community-description">Network with professionals in your industry who share similar career goals. Exchange ideas, collaborate, and grow together.</p>
-                    </div>
-                </div>
-                
-                <div class="community-card animate-on-scroll">
-                    <div class="community-image">
-                        <img src="assets/images/perspective_logo.png" alt="Organization Community">
-                    </div>
-                    <div class="community-content">
-                        <h3 class="community-title">Organization</h3>
-                        <p class="community-description">Join communities within your organization. Connect with colleagues who share your interests and perspectives.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Question Types Section -->
-    <section class="features" id="topics">
-        <div class="container">
-            <div class="section-title">
-                <h2>Question Types</h2>
-                <p>Engaging ways to share perspectives and connect</p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-card animate-on-scroll">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">Photo Questions</h3>
-                    <p class="feature-description">Share photos and ask specific questions about them. Get perspectives from your community members on your images.</p>
-                </div>
-                
-                <div class="feature-card animate-on-scroll">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">Demographic Questions</h3>
-                    <p class="feature-description">Learn about the backgrounds and basic information of your community members through thoughtful demographic questions.</p>
-                </div>
-                
-                <div class="feature-card animate-on-scroll">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7zm-1-11h2v6h-2zm0 8h2v2h-2z"/>
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">Personality Questions</h3>
-                    <p class="feature-description">Discover the personality traits and characteristics of your community members through engaging personality questions.</p>
-                </div>
-                
-                <div class="feature-card animate-on-scroll">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">Lifestyle Questions</h3>
-                    <p class="feature-description">Share and learn about daily habits, routines, and lifestyle choices of your community members.</p>
+                    <h3 class="feature-title">Question-Based</h3>
+                    <p class="feature-description">Get matched through your answers, not just surface-level interests.</p>
                 </div>
                 
                 <div class="feature-card animate-on-scroll">
@@ -227,82 +271,18 @@
                             <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
                         </svg>
                     </div>
-                    <h3 class="feature-title">Social Questions</h3>
-                    <p class="feature-description">Explore social dynamics, preferences, and interaction styles through questions about social situations and relationships.</p>
+                    <h3 class="feature-title">Organizations</h3>
+                    <p class="feature-description">Create private communities for teams, schools, or groups.</p>
                 </div>
                 
                 <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
                         </svg>
                     </div>
-                    <h3 class="feature-title">Interest-Based Questions</h3>
-                    <p class="feature-description">Dive deep into specific interests and passions through targeted questions about hobbies, entertainment, and activities.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Events Feature Section -->
-    <section class="how-it-works" id="events">
-        <div class="container">
-            <div class="section-title">
-                <h2>Community Events</h2>
-                <p>Taking online connections to the real world</p>
-            </div>
-            
-            <div class="steps">
-                <div class="step animate-on-scroll">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <div class="step-info">
-                            <h3 class="step-title">Propose an Event</h3>
-                            <p class="step-description">Any community member can suggest an in-person meetup. Choose a type of event, suggest a location, and propose dates and times.</p>
-                        </div>
-                        <div class="step-image">
-                            <img src="assets/images/ego.png" alt="Propose an Event">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="step animate-on-scroll">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <div class="step-info">
-                            <h3 class="step-title">Community Voting</h3>
-                            <p class="step-description">Community members vote on the proposed event details. The app helps coordinate the best time and place based on everyone's preferences.</p>
-                        </div>
-                        <div class="step-image">
-                            <img src="assets/images/ego.png" alt="Community Voting">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="step animate-on-scroll">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <div class="step-info">
-                            <h3 class="step-title">Event Confirmation</h3>
-                            <p class="step-description">Once details are finalized, the event is confirmed. All community members receive notifications and can RSVP to the meetup.</p>
-                        </div>
-                        <div class="step-image">
-                            <img src="assets/images/ego.png" alt="Event Confirmation">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="step animate-on-scroll">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <div class="step-info">
-                            <h3 class="step-title">Meet In Person</h3>
-                            <p class="step-description">Connect with your community members face-to-face. The app provides safety features and check-ins to ensure a comfortable experience.</p>
-                        </div>
-                        <div class="step-image">
-                            <img src="assets/images/ego.png" alt="Meet In Person">
-                        </div>
-                    </div>
+                    <h3 class="feature-title">Privacy First</h3>
+                    <p class="feature-description">Your data stays yours. No ads, no selling your information.</p>
                 </div>
             </div>
         </div>
@@ -312,11 +292,14 @@
     <section class="cta-section">
         <div class="container">
             <div class="cta-content">
-                <h2 class="cta-title">Ready to Experience Perspective?</h2>
-                <p class="cta-description">Join our TestFlight and be among the first to try these features.</p>
+                <h2 class="cta-title">Ready to Find Your Perspective?</h2>
+                <p class="cta-description">Join iPerspective today and start building meaningful connections with people who truly understand you.</p>
                 <div class="cta-buttons">
-                    <a href="https://testflight.apple.com/join/UVmPWcYr" class="btn btn-white btn-large">Join TestFlight</a>
-                    <a href="how-it-works.html" class="btn btn-transparent btn-large">Learn More</a>
+                    <a href="https://apps.apple.com/us/app/iperspective/id6745724034" class="app-store-btn">
+                        <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" 
+                             alt="Download on the App Store" style="height: 70px;">
+                    </a>
+                    <a href="how-it-works.html" class="btn btn-transparent btn-large" style="height: 70px;">Learn How It Works</a>
                 </div>
             </div>
         </div>
@@ -326,7 +309,7 @@
     <footer class="site-footer">
         <div class="container footer-container">
             <div class="footer-col">
-                <div class="footer-logo">Perspective</div>
+                <div class="footer-logo">iPerspective</div>
                 <p class="footer-description">Building meaningful connections through shared perspectives, interests, and locations.</p>
                 <div class="footer-social">
                     <a href="#" class="social-icon">
@@ -362,8 +345,8 @@
                 <h4 class="footer-heading">Features</h4>
                 <ul class="footer-links">
                     <li><a href="#communities">Communities</a></li>
-                    <li><a href="#core-features">Perspective Matching</a></li>
-                    <li><a href="#events">Events</a></li>
+                    <li><a href="#opinion-matching">Opinion Matching</a></li>
+                    <li><a href="#relationships">Relationships</a></li>
                     <li><a href="#topics">Topics</a></li>
                 </ul>
             </div>
@@ -375,20 +358,20 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                         </svg>
-                        shane@iperspective.app
+                        shane@iPerspective.app
                     </p>
                     <p>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
                         </svg>
-                        iperspective.app
+                        iPerspective.app
                     </p>
                 </div>
             </div>
         </div>
         
         <div class="footer-bottom">
-            <p>&copy; 2025 Perspective. All rights reserved.</p>
+            <p>&copy; 2025 iPerspective. All rights reserved.</p>
         </div>
     </footer>
 
