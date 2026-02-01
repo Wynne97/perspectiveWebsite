@@ -253,7 +253,7 @@ img {
 
 .logo img {
   height: auto;
-  width: 380px;
+  width: 580px;
   max-height: 90px;
   object-fit: contain;
   padding: 18px 25px;
@@ -1623,7 +1623,7 @@ img {
   
   .logo img {
     width: auto !important;
-    max-width: 70vw !important;
+    max-width: 200vw !important;
     height: auto !important;
     max-height: 55px !important;
     padding: 8px 15px !important;
@@ -1779,7 +1779,7 @@ img {
    ============================================ */
 @media (max-width: 480px) {
   .logo img {
-    max-width: 65vw !important;
+    max-width: 200vw !important;
     max-height: 50px !important;
   }
   
