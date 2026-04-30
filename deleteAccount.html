@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delete Account — iPerspective</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f7;
+      color: #1a1a1a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 440px;
+      width: 100%;
+      padding: 40px 24px;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .logo h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+    .logo p {
+      font-size: 14px;
+      color: #666;
+      margin-top: 4px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .card h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .warning {
+      background: #FFF3E0;
+      border: 1px solid #FFB74D;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      color: #E65100;
+      line-height: 1.5;
+    }
+
+    .data-list {
+      background: #f9f9f9;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      color: #444;
+      line-height: 1.8;
+    }
+    .data-list strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #1a1a1a;
+      font-size: 14px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 6px;
+    }
+
+    input[type="email"],
+    input[type="password"],
+    input[type="text"] {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 15px;
+      margin-bottom: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input:focus {
+      border-color: #90CAF9;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.9; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn-primary {
+      background: #90CAF9;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .btn-danger {
+      background: #ef5350;
+      color: #fff;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #ddd;
+      color: #555;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 18px 0;
+      font-size: 12px;
+      color: #999;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid #eee;
+    }
+    .divider::before { margin-right: 12px; }
+    .divider::after { margin-left: 12px; }
+
+    .social-btns { display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; }
+
+    .btn-social {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      background: #fff;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: background 0.2s;
+    }
+    .btn-social:hover { background: #f9f9f9; }
+    .btn-social img { width: 20px; height: 20px; }
+
+    .step { display: none; }
+    .step.active { display: block; }
+
+    .status {
+      text-align: center;
+      padding: 20px 0;
+      font-size: 14px;
+      color: #555;
+    }
+    .status.error { color: #ef5350; }
+    .status.success { color: #4caf50; }
+
+    .spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #ccc;
+      border-top-color: #90CAF9;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 12px;
+      color: #999;
+    }
+    .footer a { color: #90CAF9; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <h1>iPerspective</h1>
+      <p>Account Deletion</p>
+    </div>
+
+    <div class="card">
+      <!-- Step 1: Sign In -->
+      <div id="step-signin" class="step active">
+        <h2>Sign in to continue</h2>
+        <p>To delete your account, sign in with the method you used to create it.</p>
+
+        <div class="social-btns">
+          <button class="btn-social" onclick="socialSignIn('google')">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+            Continue with Google
+          </button>
+          <button class="btn-social" onclick="socialSignIn('apple')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C4.24 16.7 4.89 10.5 9.02 10.26c1.28.07 2.16.72 2.91.77.98-.2 1.92-.77 2.98-.7 1.26.1 2.2.59 2.82 1.49-2.59 1.55-1.97 4.96.41 5.91-.49 1.29-.73 1.87-1.09 2.55zM12.05 10.18c-.15-2.34 1.84-4.38 4.02-4.54.29 2.62-2.38 4.7-4.02 4.54z"/></svg>
+            Continue with Apple
+          </button>
+          <button class="btn-social" onclick="socialSignIn('microsoft')">
+            <svg width="20" height="20" viewBox="0 0 23 23"><rect x="1" y="1" width="10" height="10" fill="#f25022"/><rect x="12" y="1" width="10" height="10" fill="#7fba00"/><rect x="1" y="12" width="10" height="10" fill="#00a4ef"/><rect x="12" y="12" width="10" height="10" fill="#ffb900"/></svg>
+            Continue with Microsoft
+          </button>
+          <button class="btn-social" onclick="socialSignIn('twitter')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            Continue with X
+          </button>
+        </div>
+
+        <div class="divider">or sign in with email</div>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="your@email.com" autocomplete="email">
+
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Your password" autocomplete="current-password">
+
+        <div id="signin-status" class="status" style="display:none"></div>
+
+        <button class="btn btn-primary" id="signin-btn" onclick="signIn()">Sign In with Email</button>
+      </div>
+
+      <!-- Step 2: Confirm Deletion -->
+      <div id="step-confirm" class="step">
+        <h2>Delete your account?</h2>
+
+        <p>You are signed in as <strong id="user-email"></strong>.</p>
+
+        <div class="warning">
+          This action is permanent and cannot be undone. All your data will be permanently deleted.
+        </div>
+
+        <div class="data-list">
+          <strong>Data that will be deleted:</strong>
+          Your profile and photos<br>
+          Your rooms and community memberships<br>
+          Your friend connections and categories<br>
+          Your topic responses and discussion messages<br>
+          Your daily goals and updates<br>
+          Your notification history<br>
+          Your account preferences and settings
+        </div>
+
+        <label for="confirm-text">Type DELETE to confirm</label>
+        <input type="text" id="confirm-text" placeholder="Type DELETE" autocomplete="off">
+
+        <div id="confirm-status" class="status" style="display:none"></div>
+
+        <button class="btn btn-danger" id="delete-btn" onclick="deleteAccount()">
+          Delete My Account Forever
+        </button>
+
+        <div style="height:10px"></div>
+
+        <button class="btn btn-outline" onclick="cancelDeletion()">Cancel</button>
+      </div>
+
+      <!-- Step 3: Done -->
+      <div id="step-done" class="step">
+        <div style="text-align:center;padding:20px 0;">
+          <div style="font-size:48px;margin-bottom:16px;">&#10003;</div>
+          <h2>Account Deleted</h2>
+          <p style="margin-top:12px;">
+            Your account and all associated data have been permanently deleted.
+            You can close this page.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>&copy; 2026 iPerspective. <a href="https://iperspective.app">iperspective.app</a></p>
+    </div>
+  </div>
+
+  <!-- Firebase SDKs (compat for simplicity) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-functions-compat.js"></script>
+
+  <script>
+    // ─── Firebase Config ───────────────────────────────────────────────
+    // NOTE: You need to register a Web App in Firebase Console and paste
+    // the web apiKey here. The Android key is used as a fallback but you
+    // should replace it with the proper web key.
+    firebase.initializeApp({
+      apiKey: "AIzaSyDtjlLGLm83FFlnF7HM7AuZBYMfyNu_W6w",
+      authDomain: "judgeme-d6d18.firebaseapp.com",
+      projectId: "judgeme-d6d18",
+      storageBucket: "judgeme-d6d18.appspot.com",
+      messagingSenderId: "927786323194",
+    });
+
+    const authInstance = firebase.auth();
+    const functions = firebase.functions();
+
+    // ─── Step Navigation ───────────────────────────────────────────────
+    function showStep(stepId) {
+      document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+      document.getElementById(stepId).classList.add('active');
+    }
+
+    function showStatus(elementId, message, isError) {
+      const el = document.getElementById(elementId);
+      el.style.display = 'block';
+      el.className = 'status ' + (isError ? 'error' : '');
+      el.innerHTML = message;
+    }
+
+    // ─── Social Sign In ─────────────────────────────────────────────────
+    async function socialSignIn(providerName) {
+      let provider;
+      switch (providerName) {
+        case 'google':
+          provider = new firebase.auth.GoogleAuthProvider();
+          break;
+        case 'apple':
+          provider = new firebase.auth.OAuthProvider('apple.com');
+          provider.addScope('email');
+          provider.addScope('name');
+          break;
+        case 'microsoft':
+          provider = new firebase.auth.OAuthProvider('microsoft.com');
+          break;
+        case 'twitter':
+          provider = new firebase.auth.TwitterAuthProvider();
+          break;
+      }
+
+      document.getElementById('signin-status').style.display = 'none';
+
+      try {
+        const result = await authInstance.signInWithPopup(provider);
+        const displayName = result.user.displayName || result.user.email || 'your account';
+        document.getElementById('user-email').textContent = displayName;
+        showStep('step-confirm');
+      } catch (err) {
+        console.error('Social sign-in error:', err);
+        let message = 'Sign-in failed. Please try again.';
+        if (err.code === 'auth/popup-closed-by-user') message = 'Sign-in was cancelled.';
+        if (err.code === 'auth/account-exists-with-different-credential')
+          message = 'An account already exists with this email using a different sign-in method.';
+        showStatus('signin-status', message, true);
+      }
+    }
+
+    // ─── Email Sign In ───────────────────────────────────────────────────
+    async function signIn() {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      if (!email || !password) {
+        showStatus('signin-status', 'Please enter your email and password.', true);
+        return;
+      }
+
+      const btn = document.getElementById('signin-btn');
+      btn.disabled = true;
+      btn.textContent = 'Signing in...';
+      document.getElementById('signin-status').style.display = 'none';
+
+      try {
+        const credential = await authInstance.signInWithEmailAndPassword(email, password);
+        document.getElementById('user-email').textContent = credential.user.email;
+        showStep('step-confirm');
+      } catch (err) {
+        let message = 'Sign-in failed. Please check your credentials.';
+        if (err.code === 'auth/user-not-found') message = 'No account found with this email.';
+        if (err.code === 'auth/wrong-password') message = 'Incorrect password.';
+        if (err.code === 'auth/invalid-email') message = 'Invalid email address.';
+        if (err.code === 'auth/too-many-requests') message = 'Too many attempts. Please try again later.';
+        showStatus('signin-status', message, true);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Sign In';
+      }
+    }
+
+    // ─── Delete Account ────────────────────────────────────────────────
+    async function deleteAccount() {
+      const confirmText = document.getElementById('confirm-text').value.trim();
+      if (confirmText !== 'DELETE') {
+        showStatus('confirm-status', 'Please type DELETE to confirm.', true);
+        return;
+      }
+
+      const btn = document.getElementById('delete-btn');
+      btn.disabled = true;
+      showStatus('confirm-status',
+        '<span class="spinner"></span> Deleting your account and data... This may take a moment.', false);
+
+      try {
+        const deleteUserAccount = functions.httpsCallable('delete_user_account');
+        await deleteUserAccount();
+
+        // Sign out locally
+        await authInstance.signOut();
+
+        showStep('step-done');
+      } catch (err) {
+        console.error('Deletion error:', err);
+        let message = 'Something went wrong. Please try again or contact support.';
+        if (err.message) message = err.message;
+        showStatus('confirm-status', message, true);
+        btn.disabled = false;
+      }
+    }
+
+    // ─── Cancel ────────────────────────────────────────────────────────
+    function cancelDeletion() {
+      authInstance.signOut();
+      document.getElementById('confirm-text').value = '';
+      document.getElementById('confirm-status').style.display = 'none';
+      showStep('step-signin');
+    }
+
+    // Allow Enter key on inputs
+    document.getElementById('password').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') signIn();
+    });
+    document.getElementById('confirm-text').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') deleteAccount();
+    });
+  </script>
+</body>
+</html>
