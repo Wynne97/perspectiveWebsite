@@ -312,18 +312,12 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-functions-compat.js"></script>
 
+  <!-- Load Firebase config from a separate file that is .gitignored -->
+  <script src="firebase-config.js"></script>
   <script>
-    // ─── Firebase Config ───────────────────────────────────────────────
-    // NOTE: You need to register a Web App in Firebase Console and paste
-    // the web apiKey here. The Android key is used as a fallback but you
-    // should replace it with the proper web key.
-    firebase.initializeApp({
-      apiKey: "AIzaSyDtjlLGLm83FFlnF7HM7AuZBYMfyNu_W6w",
-      authDomain: "judgeme-d6d18.firebaseapp.com",
-      projectId: "judgeme-d6d18",
-      storageBucket: "judgeme-d6d18.appspot.com",
-      messagingSenderId: "927786323194",
-    });
+    // ─── Firebase Init ─────────────────────────────────────────────────
+    // Config is loaded from firebase-config.js (not committed to git).
+    firebase.initializeApp(FIREBASE_CONFIG);
 
     const authInstance = firebase.auth();
     const functions = firebase.functions();
