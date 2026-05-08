@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sign up for early access to iPerspective on Android. Join the closed beta and be the first to find your people.">
+    <title>iPerspective - Android Beta Signup</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MJDM84CV');</script>
+    <!-- End Google Tag Manager -->
+    <style>
+        /* Trial Page Specific Styles */
+        .trial-hero {
+            padding: 9rem 0 4rem;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trial-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(52, 152, 219, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(46, 204, 113, 0.1) 0%, transparent 50%);
+            animation: slowPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes slowPulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+
+        .trial-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .trial-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .trial-hero h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .trial-hero h1 .highlight {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .trial-hero p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.15rem;
+            max-width: 550px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+
+        /* Signup Form */
+        .signup-form-container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .signup-form {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .signup-form input[type="email"] {
+            flex: 1;
+            padding: 0.9rem 1.2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            font-family: var(--font-primary);
+            transition: all 0.3s ease;
+        }
+
+        .signup-form input[type="email"]::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .signup-form input[type="email"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+        }
+
+        .signup-form button {
+            padding: 0.9rem 1.8rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: var(--font-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .signup-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        .signup-form button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-message {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            min-height: 1.4em;
+        }
+
+        .form-message.success {
+            color: var(--secondary-color);
+        }
+
+        .form-message.error {
+            color: #e74c3c;
+        }
+
+        .signup-note {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* What Is iPerspective Section */
+        .about-app-section {
+            padding: 5rem 0;
+            background-color: var(--background-white);
+        }
+
+        .about-app-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-app-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-app-content p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .about-app-visual {
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-app-visual img {
+            max-width: 350px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* How It Works */
+        .how-beta-works {
+            padding: 5rem 0;
+            background-color: var(--background-light);
+        }
+
+        .beta-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .beta-step {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .beta-step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .beta-step h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .beta-step p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Features Preview */
+        .features-preview {
+            padding: 5rem 0;
+            background-color: var(--background-white);
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .preview-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .preview-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .preview-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .preview-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .preview-emoji {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Bottom CTA */
+        .trial-cta {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            text-align: center;
+            color: white;
+        }
+
+        .trial-cta h2 {
+            color: white;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .trial-cta p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .trial-cta .signup-form-container {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-app-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .about-app-visual {
+                order: -1;
+            }
+
+            .beta-steps {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .trial-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .signup-form {
+                flex-direction: column;
+            }
+
+            .signup-form button {
+                width: 100%;
+            }
+
+            .trial-hero {
+                padding: 7rem 0 3rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .trial-hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MJDM84CV"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="iPerspective Logo">
+            </a>
+
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="features.html">Features</a>
+                <a href="about.html">About</a>
+                <a href="trial.html" class="active">Android Beta</a>
+                <a href="privacy-policy.html">Privacy</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero with Signup -->
+    <section class="trial-hero">
+        <div class="container">
+            <div class="trial-badge">Android Closed Beta</div>
+            <h1>Be the First to <span class="highlight">Find Your People</span> on Android</h1>
+            <p>iPerspective is coming to Android. Sign up for early access and get invited to our closed beta before the public launch.</p>
+
+            <div class="signup-form-container">
+                <form class="signup-form" id="betaSignupForm">
+                    <input type="email" id="emailInput" placeholder="Enter your email" required>
+                    <button type="submit" id="submitBtn">Join Beta</button>
+                </form>
+                <div class="form-message" id="formMessage"></div>
+                <p class="signup-note">We'll email you when your spot is ready. No spam, ever.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- What Is iPerspective -->
+    <section class="about-app-section">
+        <div class="container">
+            <div class="about-app-grid">
+                <div class="about-app-content">
+                    <h2>What is iPerspective?</h2>
+                    <p>iPerspective is a social app where you join communities and answer polls about topics that actually matter to you — from values and relationships to career and culture.</p>
+                    <p>Based on your answers, you get matched into small affinity groups with people who share your perspective. These aren't random strangers — they're people who actually think like you.</p>
+                    <p>Once you're in a group, you play games, have real conversations, and build genuine connections. It's the opposite of doomscrolling. It's finding your people.</p>
+                </div>
+                <div class="about-app-visual">
+                    <img src="assets/images/iPerspective_logo.png" alt="iPerspective App">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How the Beta Works -->
+    <section class="how-beta-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>How the Beta Works</h2>
+                <p>Three simple steps to get early access</p>
+            </div>
+
+            <div class="beta-steps">
+                <div class="beta-step">
+                    <div class="beta-step-number">1</div>
+                    <h3>Sign Up</h3>
+                    <p>Drop your email above. That's it — takes 5 seconds.</p>
+                </div>
+                <div class="beta-step">
+                    <div class="beta-step-number">2</div>
+                    <h3>Get Invited</h3>
+                    <p>We'll add you to the closed testing group on Google Play and send you a link to download.</p>
+                </div>
+                <div class="beta-step">
+                    <div class="beta-step-number">3</div>
+                    <h3>Start Connecting</h3>
+                    <p>Answer polls, find your affinity group, play games, and connect with people who get you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You'll Get -->
+    <section class="features-preview">
+        <div class="container">
+            <div class="section-title">
+                <h2>What You'll Get as a Beta Tester</h2>
+                <p>Early access perks for helping us shape the app</p>
+            </div>
+
+            <div class="preview-grid">
+                <div class="preview-card">
+                    <span class="preview-emoji" role="img" aria-label="community">&#x1F465;</span>
+                    <h3>Small Communities</h3>
+                    <p>Get matched into groups of 10 based on your actual perspectives and values — not algorithms guessing what you like.</p>
+                </div>
+                <div class="preview-card">
+                    <span class="preview-emoji" role="img" aria-label="poll">&#x1F4CA;</span>
+                    <h3>Polls That Matter</h3>
+                    <p>Answer questions about topics you care about and see how your views compare to others in your community.</p>
+                </div>
+                <div class="preview-card">
+                    <span class="preview-emoji" role="img" aria-label="games">&#x1F3AE;</span>
+                    <h3>Games &amp; Interaction</h3>
+                    <p>Play group games with your affinity group. It's a fun way to break the ice and deepen connections.</p>
+                </div>
+                <div class="preview-card">
+                    <span class="preview-emoji" role="img" aria-label="early access">&#x1F31F;</span>
+                    <h3>Shape the App</h3>
+                    <p>Your feedback directly influences what we build next. Beta testers get a direct line to the team.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="trial-cta">
+        <div class="container">
+            <h2>Ready to Try It?</h2>
+            <p>Spots are limited. Sign up now and we'll get you in as soon as possible.</p>
+            <div class="signup-form-container">
+                <form class="signup-form" id="betaSignupFormBottom">
+                    <input type="email" id="emailInputBottom" placeholder="Enter your email" required>
+                    <button type="submit" id="submitBtnBottom">Join Beta</button>
+                </form>
+                <div class="form-message" id="formMessageBottom"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-col">
+                <div class="footer-logo">iPerspective</div>
+                <p class="footer-description">Find your people. Unite around what matters.</p>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/profile.php?id=61584927282195" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                        </svg>
+                    </a>
+                    <a href="https://x.com/iperspectiveap" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/iperspective.app/" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="trial.html">Android Beta</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Features</h4>
+                <ul class="footer-links">
+                    <li><a href="features.html#communities">Communities</a></li>
+                    <li><a href="features.html#core-features">Perspective Matching</a></li>
+                    <li><a href="features.html#topics">Topics</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Contact</h4>
+                <div class="footer-contact">
+                     <p>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        shane@iPerspective.app
+                    </p>
+                    <p>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                        </svg>
+                        iPerspective.app
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 iPerspective. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+
+    <script>
+        // Initialize Firebase
+        firebase.initializeApp(FIREBASE_CONFIG);
+        const db = firebase.firestore();
+
+        // Handle form submission (works for both top and bottom forms)
+        async function handleSignup(emailInput, submitBtn, messageEl) {
+            const email = emailInput.value.trim().toLowerCase();
+
+            if (!email) {
+                showMessage(messageEl, 'Please enter your email address.', 'error');
+                return;
+            }
+
+            // Basic email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showMessage(messageEl, 'Please enter a valid email address.', 'error');
+                return;
+            }
+
+            // Disable button while submitting
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            try {
+                // Use email as doc ID to naturally prevent duplicates (no read needed)
+                const docRef = db.collection('betaSignups').doc(email);
+                await docRef.set({
+                    email: email,
+                    signedUpAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    platform: 'android',
+                    source: 'website',
+                    status: 'pending'
+                });
+
+                showMessage(messageEl, "You're in! We'll send you an invite soon.", 'success');
+                emailInput.value = '';
+
+            } catch (error) {
+                console.error('Signup error:', error);
+                showMessage(messageEl, 'Something went wrong. Please try again.', 'error');
+            }
+
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Join Beta';
+        }
+
+        function showMessage(el, text, type) {
+            el.textContent = text;
+            el.className = 'form-message ' + type;
+        }
+
+        // Top form
+        document.getElementById('betaSignupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleSignup(
+                document.getElementById('emailInput'),
+                document.getElementById('submitBtn'),
+                document.getElementById('formMessage')
+            );
+        });
+
+        // Bottom form
+        document.getElementById('betaSignupFormBottom').addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleSignup(
+                document.getElementById('emailInputBottom'),
+                document.getElementById('submitBtnBottom'),
+                document.getElementById('formMessageBottom')
+            );
+        });
+
+        // Mobile menu
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const mainNav = document.querySelector('.main-nav');
+
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.classList.toggle('active');
+                    mainNav.classList.toggle('active');
+                });
+
+                const navLinks = mainNav.querySelectorAll('a');
+                navLinks.forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        menuToggle.classList.remove('active');
+                        mainNav.classList.remove('active');
+                    });
+                });
+
+                document.addEventListener('click', function(e) {
+                    if (!mainNav.contains(e.target) && !menuToggle.contains(e.target)) {
+                        menuToggle.classList.remove('active');
+                        mainNav.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
