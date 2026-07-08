@@ -356,6 +356,7 @@ img {
 
 .hero-cta {
   display: flex;
+  align-items: center;
   gap: var(--space-md);
   margin-top: var(--space-lg);
 }
@@ -737,6 +738,7 @@ img {
 .cta-buttons {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: var(--space-md);
 }
 
