@@ -57,8 +57,8 @@
     <p>Open this link on your phone with iPerspective installed, and
        you'll be connected automatically.</p>
     <a class="btn" id="open-app" href="#">Open in the app</a>
-    <!-- TODO: replace # with your App Store / Play Store URLs once live -->
-    <a class="btn alt" href="#">Get the app</a>
+    <a class="btn alt" id="get-app"
+       href="https://apps.apple.com/us/app/iperspective/id6745724034">Get the app</a>
   </div>
 
   <script>
@@ -69,6 +69,11 @@
       var path = location.pathname + location.search;
       var target = 'iperspective://app' + path;
       document.getElementById('open-app').href = target;
+      // Android users get the Play Store link instead.
+      if (/android/i.test(navigator.userAgent)) {
+        document.getElementById('get-app').href =
+          'https://play.google.com/store/apps/details?id=com.wynne.iperspective';
+      }
       // Gentle auto-attempt after a moment.
       setTimeout(function () { location.href = target; }, 600);
     })();

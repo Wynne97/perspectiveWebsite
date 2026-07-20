@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.wynne.iperspective",
+      "sha256_cert_fingerprints": [
+        "17:E1:A1:1C:2E:DB:29:CB:D4:63:04:C8:F7:0F:2A:B8:EF:05:B4:73:10:52:79:6F:B3:91:5B:FB:61:10:9B:44"
+      ]
+    }
+  }
+]

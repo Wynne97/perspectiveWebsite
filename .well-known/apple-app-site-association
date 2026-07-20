@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "KNNAKVG6YY.com.wynne.iPerspective",
+        "paths": ["/i/*", "/invite"]
+      }
+    ]
+  }
+}
