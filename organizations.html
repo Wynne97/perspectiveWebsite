@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Register your organization, school, church, or creator community on iPerspective. Departments, goal engagement dashboards, and real community insight.">
+    <title>iPerspective for Organizations - Register</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .org-page { max-width: 720px; margin: 0 auto; padding: 48px 20px 80px; }
+        .org-page h1 { margin-bottom: 8px; }
+        .org-page .subtitle { color: #666; margin-bottom: 32px; }
+
+        .step { display: none; background: #fff; border: 1px solid #e6e9ee;
+                border-radius: 14px; padding: 28px; margin-bottom: 20px; }
+        .step.active { display: block; }
+        .step h2 { font-size: 1.15rem; margin-bottom: 4px; }
+        .step .step-hint { color: #888; font-size: 0.85rem; margin-bottom: 18px; }
+
+        .steps-indicator { display: flex; gap: 8px; margin-bottom: 24px; }
+        .steps-indicator span { flex: 1; height: 5px; border-radius: 3px; background: #e6e9ee; }
+        .steps-indicator span.done { background: var(--primary-color); }
+
+        .form-row { margin-bottom: 14px; }
+        .form-row label { display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 6px; }
+        .form-row input, .form-row select, .form-row textarea {
+            width: 100%; padding: 11px 14px; border: 1px solid #d7dde5;
+            border-radius: 10px; font: inherit; font-size: 0.95rem; box-sizing: border-box;
+        }
+        .form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+            outline: none; border-color: var(--primary-color);
+        }
+        .form-note { font-size: 0.78rem; color: #999; margin-top: 4px; }
+
+        .dept-list { margin: 12px 0; }
+        .dept-item { display: flex; align-items: center; gap: 8px; padding: 9px 12px;
+                     background: #f5f9ff; border-radius: 8px; margin-bottom: 6px; font-size: 0.9rem; }
+        .dept-item .dept-sub { color: #888; font-size: 0.78rem; }
+        .dept-item button { margin-left: auto; background: none; border: none;
+                            color: #e74c3c; cursor: pointer; font-size: 0.85rem; }
+        .dept-add-row { display: flex; gap: 8px; }
+        .dept-add-row input { flex: 2; }
+        .dept-add-row select { flex: 1.4; }
+
+        .actions { display: flex; justify-content: space-between; margin-top: 20px; }
+        .error-box { display: none; background: #fdecea; color: #c0392b;
+                     border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; font-size: 0.88rem; }
+        .success-box { text-align: center; padding: 40px 20px; }
+        .success-box .big { font-size: 3rem; }
+        .muted-link { color: var(--primary-color); cursor: pointer; text-decoration: underline; }
+        .signed-in-as { font-size: 0.85rem; color: #666; margin-bottom: 14px; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="iPerspective Logo">
+            </a>
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="features.html">Features</a>
+                <a href="about.html">About</a>
+                <a href="organizations.html" class="active">For Organizations</a>
+                <a href="trial.html">Android Beta</a>
+                <a href="privacy-policy.html">Privacy</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="org-page">
+        <h1>iPerspective for Organizations</h1>
+        <p class="subtitle">Businesses, schools, churches, and creators — give your community goals
+           to pursue together, and see real engagement without surveys.</p>
+
+        <div class="steps-indicator">
+            <span id="ind-0" class="done"></span>
+            <span id="ind-1"></span>
+            <span id="ind-2"></span>
+            <span id="ind-3"></span>
+        </div>
+
+        <div class="error-box" id="errorBox"></div>
+
+        <!-- Step 1: Account -->
+        <section class="step active" id="step-0">
+            <h2>1 · Your account</h2>
+            <p class="step-hint">This account manages the organization. Use it to sign in on the app too.</p>
+            <div id="authForms">
+                <div class="form-row">
+                    <label for="authEmail">Email</label>
+                    <input type="email" id="authEmail" placeholder="you@organization.com" autocomplete="email">
+                </div>
+                <div class="form-row">
+                    <label for="authPassword">Password</label>
+                    <input type="password" id="authPassword" placeholder="8+ characters" autocomplete="new-password">
+                </div>
+                <p class="form-note">Already have an iPerspective account?
+                   <span class="muted-link" id="modeToggle">Sign in instead</span></p>
+            </div>
+            <div class="signed-in-as" id="signedInAs" style="display:none"></div>
+            <div class="actions">
+                <span></span>
+                <button class="btn btn-primary" id="authNext">Continue</button>
+            </div>
+        </section>
+
+        <!-- Step 2: Organization details -->
+        <section class="step" id="step-1">
+            <h2>2 · Organization details</h2>
+            <p class="step-hint">Creators: pick “Creator / Influencer” — you can skip departments entirely.</p>
+            <div class="form-row">
+                <label for="orgName">Organization name</label>
+                <input type="text" id="orgName" placeholder="e.g. Northside Church, FitWithAmy">
+            </div>
+            <div class="form-row">
+                <label for="orgType">Type</label>
+                <select id="orgType">
+                    <option value="business">Business</option>
+                    <option value="school">School</option>
+                    <option value="religious">Church / Religious</option>
+                    <option value="creator">Creator / Influencer</option>
+                    <option value="socialclub">Social Club</option>
+                    <option value="sports">Sports</option>
+                    <option value="charity">Charity / Nonprofit</option>
+                    <option value="educational">Educational</option>
+                    <option value="healthcare">Healthcare</option>
+                    <option value="technology">Technology</option>
+                    <option value="cultural">Cultural</option>
+                    <option value="event">Event</option>
+                    <option value="government">Government</option>
+                    <option value="retail">Retail</option>
+                    <option value="media">Media</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label for="orgDescription">Description</label>
+                <textarea id="orgDescription" rows="3" placeholder="What is your community about?"></textarea>
+            </div>
+            <div class="form-row">
+                <label for="orgEmail">Contact email</label>
+                <input type="email" id="orgEmail" placeholder="contact@organization.com">
+            </div>
+            <div class="form-row">
+                <label for="orgSize">Approximate size (members)</label>
+                <input type="number" id="orgSize" min="1" placeholder="50">
+            </div>
+            <div class="actions">
+                <button class="btn btn-outline" data-back>Back</button>
+                <button class="btn btn-primary" id="detailsNext">Continue</button>
+            </div>
+        </section>
+
+        <!-- Step 3: Departments -->
+        <section class="step" id="step-2">
+            <h2>3 · Departments <span style="font-weight:400;color:#999">(optional)</span></h2>
+            <p class="step-hint">Group members into departments — e.g. Youth Ministry, Grade 10, Sales.
+               A department can sit inside another to make a sub-department. You can also manage these later.</p>
+            <div class="dept-list" id="deptList"></div>
+            <div class="dept-add-row">
+                <input type="text" id="deptName" placeholder="Department name">
+                <select id="deptParent">
+                    <option value="">Top level</option>
+                </select>
+                <button class="btn btn-secondary" id="deptAdd" type="button">Add</button>
+            </div>
+            <div class="actions">
+                <button class="btn btn-outline" data-back>Back</button>
+                <button class="btn btn-primary" id="deptNext">Continue</button>
+            </div>
+        </section>
+
+        <!-- Step 4: Payment + create -->
+        <section class="step" id="step-3">
+            <h2>4 · Activate</h2>
+            <p class="step-hint" id="paymentHint">Review and activate your organization.</p>
+            <div id="summary" style="font-size:0.92rem; line-height:1.8; margin-bottom:12px;"></div>
+            <div class="actions">
+                <button class="btn btn-outline" data-back>Back</button>
+                <button class="btn btn-primary" id="createOrg">Activate organization</button>
+            </div>
+        </section>
+
+        <!-- Done -->
+        <section class="step" id="step-done">
+            <div class="success-box">
+                <div class="big">🎉</div>
+                <h2 id="doneTitle">Your organization is live</h2>
+                <p style="color:#666; margin:12px 0 24px;">
+                    Open the iPerspective app with this account — your organization's community and
+                    Engagement Insights are ready. Invite members from the app.
+                </p>
+                <a class="btn btn-primary" href="index.html">Back to home</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Firebase (compat, same pattern as deleteAccount.html) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script>
+        // ⚠️ IMPORTANT: firebase-config.js must point at the APP's Firebase
+        // project (iperspective-app). If it still points at the old project,
+        // orgs created here will be invisible to the app.
+        firebase.initializeApp(FIREBASE_CONFIG);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // ── Stripe ───────────────────────────────────────────────────────
+        // Paste your Stripe Payment Link here (Stripe Dashboard → Payment
+        // Links). When set, users are sent to Stripe before activation and
+        // return to this page with ?paid=1 (set the link's success URL to
+        // organizations.html?paid=1). Empty = free during launch.
+        const STRIPE_PAYMENT_LINK = '';
+
+        // ── State ────────────────────────────────────────────────────────
+        let step = 0;
+        let signInMode = false; // false = create account
+        const departments = []; // {tempId, name, parentTempId}
+        let deptCounter = 0;
+
+        const $ = (id) => document.getElementById(id);
+        const showError = (msg) => {
+            const box = $('errorBox');
+            box.textContent = msg;
+            box.style.display = msg ? 'block' : 'none';
+            if (msg) window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        function goTo(n) {
+            showError('');
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            $(n === 'done' ? 'step-done' : 'step-' + n).classList.add('active');
+            if (n !== 'done') {
+                step = n;
+                for (let i = 0; i < 4; i++)
+                    $('ind-' + i).classList.toggle('done', i <= n);
+            } else {
+                for (let i = 0; i < 4; i++) $('ind-' + i).classList.add('done');
+            }
+        }
+
+        document.querySelectorAll('[data-back]').forEach(b =>
+            b.addEventListener('click', () => goTo(step - 1)));
+
+        // ── Step 1: account ──────────────────────────────────────────────
+        $('modeToggle').addEventListener('click', () => {
+            signInMode = !signInMode;
+            $('modeToggle').textContent =
+                signInMode ? 'Create a new account instead' : 'Sign in instead';
+            $('authPassword').placeholder = signInMode ? 'Your password' : '8+ characters';
+        });
+
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                $('authForms').style.display = 'none';
+                const s = $('signedInAs');
+                s.style.display = 'block';
+                s.innerHTML = 'Signed in as <b>' + (user.email || user.uid) +
+                    '</b> · <span class="muted-link" id="signOutLink">Sign out</span>';
+                document.getElementById('signOutLink').onclick = () => {
+                    auth.signOut();
+                    $('authForms').style.display = 'block';
+                    s.style.display = 'none';
+                };
+            }
+        });
+
+        $('authNext').addEventListener('click', async () => {
+            if (auth.currentUser) { goTo(1); return; }
+            const email = $('authEmail').value.trim();
+            const password = $('authPassword').value;
+            if (!email || password.length < 8) {
+                showError('Enter an email and a password of at least 8 characters.');
+                return;
+            }
+            try {
+                if (signInMode) {
+                    await auth.signInWithEmailAndPassword(email, password);
+                } else {
+                    await auth.createUserWithEmailAndPassword(email, password);
+                }
+                goTo(1);
+            } catch (e) {
+                showError(e.message || 'Sign-in failed.');
+            }
+        });
+
+        // ── Step 2: details ──────────────────────────────────────────────
+        $('detailsNext').addEventListener('click', () => {
+            if (!$('orgName').value.trim()) { showError('Organization name is required.'); return; }
+            // Creators skip departments.
+            if ($('orgType').value === 'creator') { buildSummary(); goTo(3); }
+            else goTo(2);
+        });
+
+        // ── Step 3: departments ──────────────────────────────────────────
+        function renderDepts() {
+            const list = $('deptList');
+            list.innerHTML = '';
+            const parentSel = $('deptParent');
+            parentSel.innerHTML = '<option value="">Top level</option>';
+            departments.forEach(d => {
+                const parent = departments.find(p => p.tempId === d.parentTempId);
+                const item = document.createElement('div');
+                item.className = 'dept-item';
+                item.innerHTML = '<span>' + d.name + '</span>' +
+                    (parent ? '<span class="dept-sub">in ' + parent.name + '</span>' : '') +
+                    '<button type="button">Remove</button>';
+                item.querySelector('button').onclick = () => {
+                    // Removing a parent flattens its children to top level.
+                    departments.forEach(c => {
+                        if (c.parentTempId === d.tempId) c.parentTempId = null;
+                    });
+                    departments.splice(departments.indexOf(d), 1);
+                    renderDepts();
+                };
+                list.appendChild(item);
+
+                const opt = document.createElement('option');
+                opt.value = d.tempId;
+                opt.textContent = 'Inside ' + d.name;
+                parentSel.appendChild(opt);
+            });
+        }
+
+        $('deptAdd').addEventListener('click', () => {
+            const name = $('deptName').value.trim();
+            if (!name) return;
+            departments.push({
+                tempId: 'd' + (++deptCounter),
+                name,
+                parentTempId: $('deptParent').value || null,
+            });
+            $('deptName').value = '';
+            $('deptParent').value = '';
+            renderDepts();
+        });
+
+        $('deptNext').addEventListener('click', () => { buildSummary(); goTo(3); });
+
+        // ── Step 4: summary + create ─────────────────────────────────────
+        function buildSummary() {
+            const type = $('orgType');
+            $('summary').innerHTML =
+                '<b>' + $('orgName').value.trim() + '</b> · ' +
+                type.options[type.selectedIndex].text +
+                ($('orgSize').value ? ' · ~' + $('orgSize').value + ' members' : '') +
+                '<br>' +
+                (departments.length
+                    ? departments.length + ' department' + (departments.length === 1 ? '' : 's')
+                    : 'No departments yet') +
+                ' · managed by ' + (auth.currentUser ? auth.currentUser.email : '');
+            $('paymentHint').textContent = STRIPE_PAYMENT_LINK
+                ? 'You\'ll be taken to secure checkout, then your organization goes live.'
+                : 'Free during launch — activate your organization now.';
+        }
+
+        $('createOrg').addEventListener('click', async () => {
+            const user = auth.currentUser;
+            if (!user) { showError('You were signed out — go back to step 1.'); goTo(0); return; }
+
+            // Payment gate: redirect to Stripe unless already paid or free.
+            const paid = new URLSearchParams(location.search).get('paid') === '1';
+            if (STRIPE_PAYMENT_LINK && !paid) {
+                sessionStorage.setItem('orgDraft', JSON.stringify(draft()));
+                location.href = STRIPE_PAYMENT_LINK;
+                return;
+            }
+
+            $('createOrg').disabled = true;
+            try {
+                await createOrganization(user);
+                goTo('done');
+            } catch (e) {
+                showError('Failed to create organization: ' + (e.message || e));
+                $('createOrg').disabled = false;
+            }
+        });
+
+        function draft() {
+            return {
+                name: $('orgName').value.trim(),
+                type: $('orgType').value,
+                description: $('orgDescription').value.trim(),
+                contactEmail: $('orgEmail').value.trim(),
+                size: parseInt($('orgSize').value, 10) || 0,
+                departments,
+            };
+        }
+
+        // Restore a draft when returning from Stripe.
+        (function restoreDraft() {
+            if (new URLSearchParams(location.search).get('paid') !== '1') return;
+            const raw = sessionStorage.getItem('orgDraft');
+            if (!raw) return;
+            try {
+                const d = JSON.parse(raw);
+                $('orgName').value = d.name;
+                $('orgType').value = d.type;
+                $('orgDescription').value = d.description;
+                $('orgEmail').value = d.contactEmail;
+                $('orgSize').value = d.size || '';
+                departments.length = 0;
+                (d.departments || []).forEach(x => departments.push(x));
+                deptCounter = departments.length;
+                renderDepts();
+                buildSummary();
+                goTo(3);
+            } catch (_) {}
+        })();
+
+        // Writes exactly the structure in docs/ORG_SCHEMA.md (app repo).
+        async function createOrganization(user) {
+            const d = draft();
+            const now = firebase.firestore.FieldValue.serverTimestamp();
+
+            // 1. Organization doc
+            const orgRef = await db.collection('organizations').add({
+                organizationName: d.name,
+                typeOfOrganization: d.type,
+                photoURL: '',
+                description: d.description,
+                contactEmail: d.contactEmail,
+                populationSize: d.size,
+                createdAt: now,
+                ownerUID: user.uid,
+                subscription: {
+                    plan: STRIPE_PAYMENT_LINK ? 'org_monthly' : 'launch_free',
+                    status: 'active',
+                },
+            });
+
+            // 2. Root community (the app's dashboard + rooms read this)
+            const communityRef = await db.collection('communities').add({
+                kind: 'organization',
+                type: 'organization',
+                CommunityName: d.name,
+                members: [user.uid],
+                active: true,
+                creatorUID: user.uid,
+                orgId: orgRef.id,
+                created_at: now,
+            });
+            await orgRef.update({ communityId: communityRef.id });
+
+            // 3. Departments — two passes so parentId maps temp ids → real ids
+            const idMap = {};
+            for (const dept of d.departments.filter(x => !x.parentTempId)) {
+                const ref = await orgRef.collection('departments').add({
+                    name: dept.name, parentId: null, memberUIDs: [], createdAt: now,
+                });
+                idMap[dept.tempId] = ref.id;
+            }
+            for (const dept of d.departments.filter(x => x.parentTempId)) {
+                const parentId = idMap[dept.parentTempId] || null;
+                const ref = await orgRef.collection('departments').add({
+                    name: dept.name, parentId, memberUIDs: [], createdAt: now,
+                });
+                idMap[dept.tempId] = ref.id;
+            }
+
+            sessionStorage.removeItem('orgDraft');
+        }
+    </script>
+</body>
+</html>
