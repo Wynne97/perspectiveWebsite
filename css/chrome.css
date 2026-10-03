@@ -1,0 +1,65 @@
+/*
+ * Shared header + footer for the older pages (about, features, organizations,
+ * legal pages). Matches index.html / built.html, but every class is prefixed
+ * with ipx- so the legacy stylesheets can't restyle it and it can't restyle them.
+ * Load AFTER the page's own stylesheet.
+ */
+.ipx-nav, .ipx-footer {
+  --ipx-ink: #14213D; --ipx-muted: #5A6A82; --ipx-line: #E2EAF2; --ipx-blue: #1565C0;
+  --ipx-navy: #1B2A4E; --ipx-bg: #F7FAFD;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  box-sizing: border-box; width: 100%; align-self: stretch; text-align: left;
+}
+.ipx-nav *, .ipx-footer * { box-sizing: border-box; margin: 0; padding: 0; }
+.ipx-wrap { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+
+/* Header */
+.ipx-nav {
+  position: sticky; top: 0; z-index: 1000;
+  background: rgba(247, 250, 253, .9);
+  -webkit-backdrop-filter: saturate(160%) blur(12px); backdrop-filter: saturate(160%) blur(12px);
+  border-bottom: 1px solid var(--ipx-line);
+}
+.ipx-nav .ipx-wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.ipx-nav .ipx-logo { display: flex; align-items: center; }
+.ipx-nav .ipx-logo img { height: 26px; width: auto; max-width: none; padding: 0; background: none; box-shadow: none; border-radius: 0; display: block; }
+.ipx-links { display: flex; align-items: center; gap: 28px; }
+.ipx-links a { color: var(--ipx-ink); text-decoration: none; font-weight: 500; font-size: 15px; line-height: 1.4; border: 0; }
+.ipx-links a:hover, .ipx-links a.ipx-active { color: var(--ipx-blue); }
+.ipx-links a.ipx-btn {
+  background: var(--ipx-navy); color: #fff; padding: 9px 16px; border-radius: 999px; font-weight: 600; font-size: 14px;
+}
+.ipx-links a.ipx-btn:hover { color: #fff; opacity: .92; }
+.ipx-toggle { display: none; background: none; border: 0; padding: 8px; cursor: pointer; }
+.ipx-toggle span { display: block; width: 22px; height: 2px; background: var(--ipx-ink); margin: 5px 0; }
+
+/* The legacy pages padded their heroes for an old fixed header; the new one sits in the flow. */
+.hero, .privacy-hero { padding-top: 4rem !important; }
+
+/* Footer */
+.ipx-footer { padding: 56px 0 32px; color: var(--ipx-muted); font-size: 15px; line-height: 1.6; background: var(--ipx-bg); border-top: 1px solid var(--ipx-line); }
+.ipx-cols { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; }
+.ipx-footer h4 { font-family: inherit; font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--ipx-ink); margin-bottom: 14px; }
+.ipx-footer ul { list-style: none; }
+.ipx-footer li { margin-bottom: 9px; }
+.ipx-footer p { margin-bottom: 0; color: var(--ipx-muted); }
+.ipx-footer a { color: var(--ipx-muted); text-decoration: none; }
+.ipx-footer a:hover { color: var(--ipx-blue); }
+.ipx-footer .ipx-logo img { height: 24px; width: auto; margin-bottom: 14px; display: block; }
+.ipx-social { display: flex; gap: 12px; margin-top: 16px; }
+.ipx-social a { width: 36px; height: 36px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(20,33,61,.06), 0 8px 24px rgba(20,33,61,.08); display: grid; place-items: center; }
+.ipx-social svg { width: 16px; height: 16px; fill: var(--ipx-navy); }
+.ipx-bottom { border-top: 1px solid var(--ipx-line); margin-top: 40px; padding-top: 22px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 14px; }
+
+@media (max-width: 980px) { .ipx-cols { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 760px) {
+  .ipx-toggle { display: block; }
+  .ipx-links {
+    position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0;
+    background: #fff; border-bottom: 1px solid var(--ipx-line); padding: 8px 20px 18px; display: none;
+  }
+  .ipx-links.ipx-open { display: flex; }
+  .ipx-links a { padding: 12px 0; border-bottom: 1px solid var(--ipx-line); }
+  .ipx-links a.ipx-btn { margin-top: 12px; text-align: center; border-bottom: 0; }
+  .ipx-cols { grid-template-columns: 1fr; }
+}

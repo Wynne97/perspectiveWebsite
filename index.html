@@ -3,26 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="iPerspective connects you with people who actually think like you. Find your community, have real conversations, and unite around what matters.">
-    <title>iPerspective - Find Your People. Unite Around What Matters.</title>
+    <title>iPerspective: Small rooms of people who think like you</title>
+    <meta name="description" content="iPerspective places you in a small room of about ten people matched on your actual answers, not a feed. See exactly why you matched. Live on the App Store and Google Play.">
+    <meta name="theme-color" content="#1B2A4E">
+    <link rel="canonical" href="https://iperspective.app/">
 
     <!-- Open Graph / Social Preview -->
-    <meta property="og:title" content="iPerspective - Find Your People. Unite Around What Matters.">
-    <meta property="og:description" content="iPerspective connects you with people who actually think like you. Find your community, have real conversations, and unite around what matters.">
+    <meta property="og:title" content="iPerspective: Small rooms of people who think like you">
+    <meta property="og:description" content="No feed. Real people. Get placed in a room of about ten people matched on your actual answers.">
     <meta property="og:image" content="https://iperspective.app/og-social.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://iperspective.app/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="iPerspective - Find Your People. Unite Around What Matters.">
-    <meta name="twitter:description" content="iPerspective connects you with people who actually think like you. Find your community, have real conversations, and unite around what matters.">
+    <meta name="twitter:title" content="iPerspective: Small rooms of people who think like you">
+    <meta name="twitter:description" content="No feed. Real people. Get placed in a room of about ten people matched on your actual answers.">
     <meta name="twitter:image" content="https://iperspective.app/og-social.png">
+    <meta name="apple-itunes-app" content="app-id=6745724034">
 
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="assets/images/logo-mark.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lato:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/site.css">
+
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -30,349 +35,299 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-MJDM84CV');</script>
     <!-- End Google Tag Manager -->
- 
+    <script src="js/track.js"></script>
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MJDM84CV"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    
-    <!-- Header -->
-    <header class="site-header">
-        <div class="container header-container">
-            <a href="#"  class="logo">
-                <img src="assets/images/logo.png" alt="iPerspective Logo">
+
+    <header class="nav">
+        <div class="wrap">
+            <a href="index.html" class="nav-logo" aria-label="iPerspective home">
+                <img src="assets/images/logo-wordmark.png" alt="iPerspective" width="166" height="26">
             </a>
-            
-            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            
-            <nav class="main-nav">
-                <a href="index.html" class="active">Home</a>
-                <a href="features.html">Features</a>
+            <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+            <nav class="nav-links">
+                <a href="#how">How it works</a>
+                <a href="#try">Try it</a>
+                <a href="built.html">How it's built</a>
                 <a href="about.html">About</a>
-                <a href="organizations.html">For Organizations</a>
-                <a href="trial.html">Android Beta</a>
-                <a href="privacy-policy.html">Privacy</a>
+                <a href="#get" class="btn btn-sm" data-track="nav_get_app">Get the app</a>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Shown only to visitors who arrive with ?ref= (business card QR uses ?ref=card) -->
+    <div class="welcome" id="welcome">
+        <div class="wrap">
+            <div class="welcome-card">
+                <button class="welcome-close" aria-label="Dismiss">&times;</button>
+                <img class="avatar" src="assets/images/shane-founder.jpg" alt="Shane Wynne">
+                <div>
+                    <h2 data-ref-title>Thanks for scanning my card.</h2>
+                    <p>I'm Shane. I designed and built iPerspective on my own, and it's live on the App Store and Google Play. Start wherever you like:</p>
+                    <div class="welcome-actions">
+                        <a href="#try" class="btn btn-orange btn-sm" data-track="welcome_try">Try a 20-second question</a>
+                        <a href="#get" class="btn btn-ghost btn-sm" data-track="welcome_get_app">Get the app</a>
+                        <a href="built.html" class="btn btn-ghost btn-sm" data-track="welcome_built">See how it's built</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero -->
     <section class="hero">
-        <div class="container hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">The World Feels <span class="highlight">Divided.</span><br>It Doesn't Have to Be.</h1>
-                <p class="hero-subtitle">Find people who actually think like you. Have real conversations. Unite around what matters.</p>
-                <div class="hero-cta">
-                    <a href="https://apps.apple.com/us/app/iperspective/id6745724034" class="app-store-btn">
-                        <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83"
-                             alt="Download on the App Store" style="height: 50px;">
+        <div class="wrap">
+            <div>
+                <span class="eyebrow">Live on iPhone and Android</span>
+                <h1>Small rooms of people who <span class="accent">think like you.</span></h1>
+                <p class="lede">No feed and no mystery algorithm. Answer a few questions, get placed in a room of about ten people matched on your actual answers, and see exactly why you matched. Every three days, a fresh room.</p>
+                <div class="stores">
+                    <a class="badge apple" data-placement="hero" href="https://apps.apple.com/us/app/iperspective/id6745724034">
+                        <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on the App Store">
                     </a>
-                    <a href="https://play.google.com/store/apps/details?id=com.wynne.iperspective" class="app-store-btn">
-                        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
-                             alt="Get it on Google Play" style="height: 70px;">
-                    </a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="assets/images/iPerspective_logo.png" alt="iPerspective App Interface">
-                <div class="floating-element element-1">10-person communities</div>
-                <div class="floating-element element-2">Shared interests</div>
-                <div class="floating-element element-3">Local connections</div>
-                <div class="floating-element element-4">Polls</div>
-                <div class="floating-element element-5">Dating</div>
-                <div class="floating-element element-6">Discussion</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Problem Section -->
-    <section class="problem-section">
-        <div class="container">
-            <div class="problem-content">
-                <h2>Social Media Promised to Connect Us.<br>Instead, It Made Us Feel More Alone.</h2>
-                <p>We scroll through feeds full of strangers. We chase followers who don't really know us. We mistake likes for genuine connection. Meanwhile, the real conversations, the ones where someone actually <em>gets</em> you, feel harder to find than ever.</p>
-                <p>It's not your fault. These platforms weren't built to help you find your people. They were built to keep you scrolling.</p>
-                <p class="highlight-text">What if there was something different?</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Solution Section -->
-    <section class="solution-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>iPerspective Is Built Different</h2>
-                <p>A social app designed for real connection, not endless scrolling</p>
-            </div>
-            
-            <div class="solution-grid">
-                <div class="solution-card animate-on-scroll">
-                    <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12 12.75c1.63 0 3.07.39 4.24.9 1.08.48 1.76 1.56 1.76 2.73V18H6v-1.61c0-1.18.68-2.26 1.76-2.73 1.17-.52 2.61-.91 4.24-.91zM4 13c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm1.13 1.1c-.37-.06-.74-.1-1.13-.1-.99 0-1.93.21-2.78.58C.48 14.9 0 15.62 0 16.43V18h4.5v-1.61c0-.83.23-1.61.63-2.29zM20 13c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm4 3.43c0-.81-.48-1.53-1.22-1.85-.85-.37-1.79-.58-2.78-.58-.39 0-.76.04-1.13.1.4.68.63 1.46.63 2.29V18H24v-1.57zM12 6c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z"/>
-                        </svg>
-                    </div>
-                    <h3>Find Your People</h3>
-                    <p>Get matched into communities of 10 based on how you actually think, your perspectives, values, and worldview. Not just what content you click on.</p>
-                </div>
-                
-                <div class="solution-card animate-on-scroll">
-                    <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
-                        </svg>
-                    </div>
-                    <h3>Have Real Conversations</h3>
-                    <p>Small communities mean everyone gets heard. Discuss topics that matter. Discover where you agree, and where you see things differently.</p>
-                </div>
-                
-                <div class="solution-card animate-on-scroll">
-                    <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
-                        </svg>
-                    </div>
-                    <h3>Unite Around What Matters</h3>
-                    <p>When you find people who share your perspective, you realize you're not alone. And people who aren't alone can do powerful things together.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Perspective Comparison Section -->
-    <section class="perspective-section">
-        <div class="container">
-            <div class="perspective-container">
-                <div class="perspective-content">
-                    <h2>See How Your Perspectives Align</h2>
-                    <p>Answer questions about yourself and guess how others would answer. iPerspective shows you exactly where your views overlap, and where they differ.</p>
-                    <p>It's not about right or wrong. It's about understanding. Finding the people who see the world the way you do. And maybe learning something from those who don't.</p>
-                    <p><strong>Your perspective matters.</strong> It's how you find your people.</p>
-                </div>
-                <div class="perspective-image">
-                    <img src="assets/images/venn-diagram.png" alt="Perspective Overlap" style="max-width: 400px; border-radius: 20px;">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Fresh Communities Section -->
-    <section class="solution-section">
-        <div class="container">
-            <div class="perspective-container" style="flex-direction: row-reverse;">
-                <div class="perspective-content">
-                    <h2>Fresh Communities Every 3 Days</h2>
-                    <p>Every 3 days, communities refresh. You get matched with new people who share your perspectives. It keeps things fresh, and ensures you're always expanding your circle.</p>
-                    <p>Made a real connection? Add them as a friend. Those relationships stay, even as communities evolve.</p>
-                    <p>The goal isn't to trap you in an echo chamber. It's to help you find people worth knowing again and again.</p>
-                </div>
-                <div class="perspective-image">
-                    <img src="assets/images/recycle-timer.png" alt="Community Refresh Timer" style="max-width: 400px; border-radius: 20px;">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="container">
-            <h2>Small Communities. Big Connections.</h2>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h3>10</h3>
-                    <p>People per community</p>
-                </div>
-                <div class="stat-item">
-                    <h3>3</h3>
-                    <p>Days until refresh</p>
-                </div>
-                <div class="stat-item">
-                    <h3>∞</h3>
-                    <p>Perspectives to discover</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quote Section -->
-    <section class="quote-section">
-        <div class="container">
-            <div class="quote-content">
-                <blockquote>"Never doubt that a small group of thoughtful, committed citizens can change the world; indeed, it's the only thing that ever has."</blockquote>
-                <cite>— Margaret Mead</cite>
-            </div>
-        </div>
-    </section>
-
-    <!-- Topics Section -->
-    <section class="features">
-        <div class="container">
-            <div class="section-title">
-                <h2>Dive Deep Into Topics That Matter</h2>
-                <p>The new Topics feature lets you explore questions, share your answer, and join discussions with people who think like you</p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-card animate-on-scroll">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"/>
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">Discuss What Matters</h3>
-                    <p class="feature-description">Career, relationships, values, politics, Explore topics that actually matter to you and your community.</p>
-                </div>
-                
-                <div class="feature-card animate-on-scroll">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">Share Your Answer</h3>
-                    <p class="feature-description">Answer questions and see who in your community answered the same way. That's where the real conversations start.</p>
-                </div>
-                
-                <div class="feature-card animate-on-scroll">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">Understand Each Other</h3>
-                    <p class="feature-description">Private group discussions help you go deeper. It's not about winning arguments, it's about finding understanding.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-title">Ready to Find Your People?</h2>
-                <p class="cta-description">Join iPerspective. Find your community. Unite around what matters.</p>
-                <div class="cta-buttons">
-                    <a href="https://apps.apple.com/us/app/iperspective/id6745724034" class="app-store-btn">
-                        <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83"
-                             alt="Download on the App Store" style="height: 50px;">
-                    </a>
-                    <a href="https://play.google.com/store/apps/details?id=com.wynne.iperspective" class="app-store-btn">
-                        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
-                             alt="Get it on Google Play" style="height: 70px;">
+                    <a class="badge google" data-placement="hero" href="https://play.google.com/store/apps/details?id=com.wynne.iperspective">
+                        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
                     </a>
                 </div>
+                <p class="store-note">Free. Takes about a minute to get into your first room.</p>
+            </div>
+            <div class="hero-visual" aria-hidden="true">
+                <div class="orbit"></div>
+                <div class="phone p1"><img src="assets/images/shots/home.webp" alt="" width="560" height="1226"></div>
+                <div class="phone p2"><img src="assets/images/shots/hot_takes.webp" alt="" width="560" height="1226" loading="lazy"></div>
+                <div class="chip c1"><span class="dot"></span>Matched on: morning routines, growth</div>
+                <div class="chip c2"><span class="dot"></span>New room in 3 days</div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="container footer-container">
-            <div class="footer-col">
-                <div class="footer-logo">iPerspective</div>
-                <p class="footer-description">Find your people. Unite around what matters.</p>
-                <div class="footer-social">
-                    <a href="https://www.facebook.com/profile.php?id=61584927282195" class="social-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
-                        </svg>
-                    </a>
-                    <a href="https://x.com/iperspectiveap" class="social-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-                        </svg>
-                    </a>
-                    <a href="https://www.instagram.com/iperspective.app/" class="social-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                    </a>
+    <div class="strip">
+        <div class="wrap">
+            <span><b>Rooms of ~10</b> people, not millions</span>
+            <span><b>Every match</b> shows its reason</span>
+            <span><b>Fresh room</b> every 3 days</span>
+            <span><b>Built</b> in New York</span>
+        </div>
+    </div>
+
+    <!-- How it works -->
+    <section id="how">
+        <div class="wrap center">
+            <span class="eyebrow">How it works</span>
+            <h2>From strangers to your people in three steps</h2>
+            <p class="lede">Social media got good at keeping us scrolling. iPerspective is built to get you into a real conversation with people who share how you see things.</p>
+            <div class="steps">
+                <div class="step reveal">
+                    <div class="num">1</div>
+                    <h3>Join your communities</h3>
+                    <p>Your age group, city, work, interests, faith. Answer a few quick questions inside each one so the app knows who you relate to.</p>
+                    <div class="shot"><div class="phone"><img src="assets/images/shots/home.webp" alt="iPerspective home screen with communities and today's goals" loading="lazy"></div></div>
+                </div>
+                <div class="step reveal">
+                    <div class="num">2</div>
+                    <h3>Get placed in a room</h3>
+                    <p>About ten people matched on your actual answers. You can see the reason you were matched, so nothing is hidden behind an algorithm.</p>
+                    <div class="shot"><div class="phone"><img src="assets/images/shots/find_a_room.webp" alt="Find a Room sheet listing nearby communities" loading="lazy"></div></div>
+                </div>
+                <div class="step reveal">
+                    <div class="num">3</div>
+                    <h3>Play, compare, keep your people</h3>
+                    <p>Quick games reveal who everyone really is. Keep the people you click with. Their connections stay when the room resets.</p>
+                    <div class="shot"><div class="phone"><img src="assets/images/shots/this_or_that.webp" alt="This or That game inside a room" loading="lazy"></div></div>
                 </div>
             </div>
-            
-            <div class="footer-col">
-                <h4 class="footer-heading">Quick Links</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="features.html">Features</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        </div>
+    </section>
+
+    <!-- Try it -->
+    <section class="demo-section" id="try">
+        <div class="wrap demo-grid">
+            <div class="demo-copy">
+                <span class="eyebrow">Try it right here</span>
+                <h2>Answer. Guess. Find out.</h2>
+                <p class="lede">In the app, every question has a twist: before you see the results, you guess how the other group answered. Guessing how people unlike you think is the whole idea behind iPerspective.</p>
+                <ul>
+                    <li>Every answer counts toward who you get introduced to</li>
+                    <li>See how your communities split, side by side</li>
+                    <li>Open a thread with the people who answered like you</li>
                 </ul>
             </div>
-            
-            <div class="footer-col">
-                <h4 class="footer-heading">Features</h4>
-                <ul class="footer-links">
-                    <li><a href="features.html#communities">Communities</a></li>
-                    <li><a href="features.html#core-features">Perspective Matching</a></li>
-                    <li><a href="features.html#topics">Topics</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-col">
-                <h4 class="footer-heading">Contact</h4>
-                <div class="footer-contact">
-                     <p>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                        </svg>
-                        shane@iPerspective.app
-                    </p>
-                    <p>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-                        </svg>
-                        iPerspective.app
-                    </p>
+
+            <div class="demo" id="demo" aria-live="polite">
+                <div class="demo-top"><span class="tag">Today's question</span><span data-demo-step>Step 1 of 3</span></div>
+                <div class="demo-progress"><span class="on"></span><span></span><span></span></div>
+
+                <div class="demo-pane active" data-pane="1">
+                    <h3>Call or text?</h3>
+                    <div class="opts">
+                        <button class="opt" data-answer="Call">Call</button>
+                        <button class="opt" data-answer="Text">Text</button>
+                    </div>
+                    <p class="hint">Pick one. No account needed for this part.</p>
+                </div>
+
+                <div class="demo-pane" data-pane="2">
+                    <h3>Now guess.</h3>
+                    <p style="color:var(--muted);font-size:.98rem">What share of people your age do you think also picked <b data-demo-pick>Call</b>?</p>
+                    <div class="guess-val"><span data-guess>50</span>%</div>
+                    <div class="guess-sub">drag to set your guess</div>
+                    <input type="range" min="0" max="100" value="50" step="1" aria-label="Your guess, percent" data-slider>
+                    <button class="btn btn-orange" data-lock>Lock in my guess</button>
+                </div>
+
+                <div class="demo-pane" data-pane="3">
+                    <h3>Guess locked in.</h3>
+                    <div class="locked">
+                        You picked <b data-demo-pick>Call</b> and guessed <b><span data-guess>50</span>%</b> agree with you.
+                        The real split comes from real people, so the reveal happens in the app, along with the people who answered the same way.
+                    </div>
+                    <div class="stores">
+                        <a class="badge apple" data-placement="demo" href="https://apps.apple.com/us/app/iperspective/id6745724034">
+                            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on the App Store">
+                        </a>
+                        <a class="badge google" data-placement="demo" href="https://play.google.com/store/apps/details?id=com.wynne.iperspective">
+                            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2025 iPerspective. All rights reserved.</p>
+    </section>
+
+    <!-- Inside a room -->
+    <section id="features">
+        <div class="wrap center">
+            <span class="eyebrow">Inside a room</span>
+            <h2>Games that reveal who people really are</h2>
+            <p class="lede">Short, fast, and built around the people in your room. Swipe through what you'll find.</p>
+        </div>
+        <div class="rail" tabindex="0" aria-label="App screenshots">
+            <figure class="reveal"><div class="phone sm"><img src="assets/images/shots/hot_takes.webp" alt="Hot Takes game" loading="lazy"></div>
+                <figcaption><b>Hot Takes</b><span>Drop a take. See who in the room agrees.</span></figcaption></figure>
+            <figure class="reveal"><div class="phone sm"><img src="assets/images/shots/this_or_that.webp" alt="This or That game" loading="lazy"></div>
+                <figcaption><b>This or That</b><span>Six quick rounds, compared live with your roommates.</span></figcaption></figure>
+            <figure class="reveal"><div class="phone sm"><img src="assets/images/shots/impressions.webp" alt="Impressions: how the room sees you" loading="lazy"></div>
+                <figcaption><b>Impressions</b><span>Find out how the room really sees you.</span></figcaption></figure>
+            <figure class="reveal"><div class="phone sm"><img src="assets/images/shots/archetype.webp" alt="Get to know a member through survey bundles" loading="lazy"></div>
+                <figcaption><b>Get to know them</b><span>Answer surveys to unlock how someone shows up.</span></figcaption></figure>
+            <figure class="reveal"><div class="phone sm"><img src="assets/images/shots/topics.webp" alt="Answering a topic question" loading="lazy"></div>
+                <figcaption><b>Topics</b><span>Answer once, find people who think like you.</span></figcaption></figure>
+            <figure class="reveal"><div class="phone sm"><img src="assets/images/shots/goals.webp" alt="Room activity feed with shared goals" loading="lazy"></div>
+                <figcaption><b>Goals</b><span>Set goals and keep each other accountable.</span></figcaption></figure>
+        </div>
+    </section>
+
+    <!-- Why it's different -->
+    <section style="padding-top:0">
+        <div class="wrap center">
+            <span class="eyebrow">Why it's different</span>
+            <h2>Social, without the feed</h2>
+            <div class="grid-4">
+                <div class="card reveal" style="text-align:left">
+                    <div class="ico"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+                    <h3>Matching you can see</h3>
+                    <p>Every room tells you why you're in it. No black box deciding who you meet.</p>
+                </div>
+                <div class="card reveal" style="text-align:left">
+                    <div class="ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></div>
+                    <h3>Small on purpose</h3>
+                    <p>You're one of ten, not one of millions. Past ten, people stop talking and start broadcasting.</p>
+                </div>
+                <div class="card reveal" style="text-align:left">
+                    <div class="ico"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+                    <h3>No followers to chase</h3>
+                    <p>No follower counts and no likes race. Just people you actually want to keep talking to.</p>
+                </div>
+                <div class="card reveal" style="text-align:left">
+                    <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 11l18-8-8 18-2-8-8-2z"/></svg></div>
+                    <h3>Made to meet up</h3>
+                    <p>Trust grows as you interact, from "just met" toward "ready to meet in real life."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Builder -->
+    <section class="builder">
+        <div class="wrap">
+            <img class="portrait" src="assets/images/shane-founder.jpg" alt="Shane Wynne, creator of iPerspective" loading="lazy">
+            <div>
+                <span class="eyebrow">Built by one developer</span>
+                <h2>Hi, I'm Shane.</h2>
+                <p class="lede">I designed and built iPerspective end to end: the original Swift prototype, the Flutter app now shipping on iOS and Android, and the Python and Firebase backend that forms the rooms and sends the questions.</p>
+                <div class="tags"><span>Swift</span><span>Flutter / Dart</span><span>Firebase</span><span>Python Cloud Functions</span><span>App Store releases</span></div>
+                <div class="stores">
+                    <a href="built.html" class="btn" data-track="builder_built">See how it's built</a>
+                    <a href="mailto:swynne@iPerspective.app" class="btn btn-ghost" data-track="builder_email">swynne@iPerspective.app</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="get">
+        <div class="wrap">
+            <div class="box">
+                <h2>Meet your first room today.</h2>
+                <p>Open iPerspective. Answer a few questions. See who you match with.</p>
+                <div class="stores">
+                    <a class="badge apple" data-placement="footer_cta" href="https://apps.apple.com/us/app/iperspective/id6745724034">
+                        <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on the App Store">
+                    </a>
+                    <a class="badge google" data-placement="footer_cta" href="https://play.google.com/store/apps/details?id=com.wynne.iperspective">
+                        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrap">
+            <div class="cols">
+                <div>
+                    <a href="index.html" class="logo"><img src="assets/images/logo-wordmark.png" alt="iPerspective" width="153" height="24"></a>
+                    <p>Small rooms of people who think like you.<br>Grow your community correctly.</p>
+                    <div class="social">
+                        <a href="https://www.instagram.com/iperspective.app/" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 3.9 2.4 7.2 2.3c1.2-.1 1.6-.1 4.8-.1zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.2 4.4 2.6 6.8 7 7 1.2.1 1.6.1 4.9.1s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.2-4.4-2.6-6.8-7-7C15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.9 1.4 1.4 0 0 0 0-2.9z"/></svg></a>
+                        <a href="https://x.com/iperspectiveap" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.2 2.3h3.4l-7.4 8.4 8.7 11.5h-6.8l-5.3-7-6.1 7H1.3l7.9-9L.8 2.3h7l4.8 6.4 5.6-6.4zm-1.2 17.9h1.9L7.1 4.2H5.1L17 20.2z"/></svg></a>
+                        <a href="https://www.facebook.com/profile.php?id=61584927282195" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22.7 0H1.3C.6 0 0 .6 0 1.3v21.4c0 .7.6 1.3 1.3 1.3h11.5v-9.3H9.7v-3.6h3.1V8.4c0-3.1 1.9-4.8 4.7-4.8 1.3 0 2.5.1 2.8.1v3.2h-1.9c-1.5 0-1.8.7-1.8 1.8v2.3h3.6l-.5 3.6h-3.1V24h6.1c.7 0 1.3-.6 1.3-1.3V1.3C24 .6 23.4 0 22.7 0z"/></svg></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>App</h4>
+                    <ul>
+                        <li><a href="#how">How it works</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="organizations.html">For organizations</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="built.html">How it's built</a></li>
+                        <li><a href="mailto:swynne@iPerspective.app">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy policy</a></li>
+                        <li><a href="csae-policy.html">Child safety</a></li>
+                        <li><a href="deleteAccount.html">Delete account</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bottom">
+                <span>&copy; 2026 iPerspective. All rights reserved.</span>
+                <span>Made in Queens, NY</span>
+            </div>
         </div>
     </footer>
 
-    <!-- Mobile Menu JavaScript - Inline to ensure it works -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.querySelector('.mobile-menu-toggle');
-            const mainNav = document.querySelector('.main-nav');
-            
-            if (menuToggle && mainNav) {
-                // Toggle menu on button click
-                menuToggle.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    this.classList.toggle('active');
-                    mainNav.classList.toggle('active');
-                });
-                
-                // Close menu when clicking a nav link
-                const navLinks = mainNav.querySelectorAll('a');
-                navLinks.forEach(function(link) {
-                    link.addEventListener('click', function() {
-                        menuToggle.classList.remove('active');
-                        mainNav.classList.remove('active');
-                    });
-                });
-                
-                // Close menu when clicking outside
-                document.addEventListener('click', function(e) {
-                    if (!mainNav.contains(e.target) && !menuToggle.contains(e.target)) {
-                        menuToggle.classList.remove('active');
-                        mainNav.classList.remove('active');
-                    }
-                });
-            }
-        });
-    </script>
+    <script src="js/site.js"></script>
 </body>
 </html>

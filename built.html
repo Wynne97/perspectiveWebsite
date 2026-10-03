@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How iPerspective is built</title>
+    <meta name="description" content="The engineering behind iPerspective, a solo-built social app live on iOS and Android: Flutter, Swift roots, Firebase, and Python Cloud Functions.">
+    <meta name="theme-color" content="#1B2A4E">
+    <link rel="canonical" href="https://iperspective.app/built.html">
+    <meta property="og:title" content="How iPerspective is built">
+    <meta property="og:description" content="A solo-built social app, live on iOS and Android. The architecture and the decisions behind it.">
+    <meta property="og:image" content="https://iperspective.app/og-social.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://iperspective.app/built.html">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="assets/images/logo-mark.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lato:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/site.css">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MJDM84CV');</script>
+    <!-- End Google Tag Manager -->
+    <script src="js/track.js"></script>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MJDM84CV"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <header class="nav">
+        <div class="wrap">
+            <a href="index.html" class="nav-logo" aria-label="iPerspective home">
+                <img src="assets/images/logo-wordmark.png" alt="iPerspective" width="166" height="26">
+            </a>
+            <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+            <nav class="nav-links">
+                <a href="index.html#how">How it works</a>
+                <a href="index.html#try">Try it</a>
+                <a href="built.html" class="active">How it's built</a>
+                <a href="about.html">About</a>
+                <a href="index.html#get" class="btn btn-sm" data-track="nav_get_app">Get the app</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Intro -->
+    <section style="padding-top:64px;padding-bottom:56px">
+        <div class="wrap">
+            <span class="eyebrow">Engineering</span>
+            <h1>How iPerspective is built</h1>
+            <p class="lede">iPerspective is a social app that places people in small rooms based on how they answer questions. I built all of it myself: the Swift prototype, the Flutter app shipping on iOS and Android, and the Firebase and Python backend that forms rooms, schedules questions, and sends notifications. This page covers the architecture and the decisions I'd want to talk through.</p>
+            <div class="stores" style="margin-top:1.4rem">
+                <a href="mailto:swynne@iPerspective.app" class="btn" data-track="built_email_top">Email me</a>
+                <a href="https://apps.apple.com/us/app/iperspective/id6745724034" class="btn btn-ghost" data-placement="built_top">View on the App Store</a>
+            </div>
+            <div class="facts">
+                <div class="fact"><b>iOS + Android</b><span>Live on the App Store and Google Play from one codebase</span></div>
+                <div class="fact"><b>130k+</b><span>Lines of Dart across 30 feature modules</span></div>
+                <div class="fact"><b>v1.4.4</b><span>Current release, build 144</span></div>
+                <div class="fact"><b>1 developer</b><span>Product, design, mobile, backend, and releases</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stack -->
+    <section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+        <div class="wrap">
+            <span class="eyebrow">The stack</span>
+            <h2>What it runs on</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="ico"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg></div>
+                    <h3>Mobile app</h3>
+                    <ul class="stack-list">
+                        <li>Flutter and Dart<small>One codebase for iOS and Android</small></li>
+                        <li>Riverpod<small>State management and dependency injection</small></li>
+                        <li>go_router<small>Navigation and deep-link routing</small></li>
+                        <li>Swift roots<small>Started as a native Swift app. Shared helpers kept in parity, like the brand colors</small></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="ico"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
+                    <h3>Backend</h3>
+                    <ul class="stack-list">
+                        <li>Cloud Firestore<small>Security rules are the authorization layer</small></li>
+                        <li>Python 3.12 Cloud Functions<small>HTTP, callable, scheduled, and Firestore-triggered</small></li>
+                        <li>Cloud Scheduler<small>Room formation and an hourly game scheduler driven by a JSON timetable</small></li>
+                        <li>Firebase Auth and Storage<small>Email, Google, and Sign in with Apple. Profile and community photos</small></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8z"/></svg></div>
+                    <h3>Platform and release</h3>
+                    <ul class="stack-list">
+                        <li>Push notifications<small>Firebase Cloud Messaging through APNs on iOS</small></li>
+                        <li>Universal Links and App Links<small>Associated Domains, with the association files hosted on this site</small></li>
+                        <li>Subscriptions<small>RevenueCat paywall on StoreKit and Play Billing, shipped behind a remote flag</small></li>
+                        <li>Crashlytics and Analytics<small>Plus Python admin, audit, and deploy scripts</small></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture -->
+    <section>
+        <div class="wrap">
+            <span class="eyebrow">Architecture</span>
+            <h2>How the pieces talk</h2>
+            <p class="lede">The app reads and writes Firestore directly, with security rules enforcing who can see what. Anything that needs a global view of users, like forming rooms or scheduling questions, runs server-side in Python.</p>
+            <p class="swipe-hint">Swipe sideways to see the whole diagram.</p>
+            <div class="diagram" role="img" aria-label="Architecture diagram: the Flutter app talks to Firebase Auth, Firestore, and Storage. Cloud Scheduler triggers Python Cloud Functions that form rooms and schedule questions. Firestore triggers drive notification functions, which push through FCM and APNs back to the phone. Universal Links from iperspective.app open the app.">
+                <svg viewBox="0 0 1000 470" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+                    <defs>
+                        <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#5A6A82"/></marker>
+                        <marker id="ao" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#FF6B35"/></marker>
+                    </defs>
+                    <!-- App -->
+                    <rect x="20" y="120" width="230" height="230" rx="18" fill="#E6F5FC" stroke="#89CFF0" stroke-width="2"/>
+                    <text x="135" y="152" text-anchor="middle" font-weight="700" font-size="16" fill="#1B2A4E">iPerspective app</text>
+                    <text x="135" y="172" text-anchor="middle" font-size="12" fill="#5A6A82">Flutter on iOS and Android</text>
+                    <g font-size="13" fill="#14213D">
+                        <rect x="40" y="190" width="190" height="34" rx="8" fill="#fff"/><text x="135" y="212" text-anchor="middle">Riverpod providers</text>
+                        <rect x="40" y="232" width="190" height="34" rx="8" fill="#fff"/><text x="135" y="254" text-anchor="middle">QueueService.answer()</text>
+                        <rect x="40" y="274" width="190" height="34" rx="8" fill="#fff"/><text x="135" y="296" text-anchor="middle">Rooms, circles, DMs, games</text>
+                    </g>
+                    <text x="135" y="335" text-anchor="middle" font-size="11" fill="#5A6A82">Sign in with Apple · APNs · StoreKit</text>
+
+                    <!-- Firebase -->
+                    <rect x="370" y="120" width="250" height="230" rx="18" fill="#fff" stroke="#E2EAF2" stroke-width="2"/>
+                    <text x="495" y="152" text-anchor="middle" font-weight="700" font-size="16" fill="#1B2A4E">Firebase</text>
+                    <g font-size="13" fill="#14213D">
+                        <rect x="390" y="172" width="210" height="34" rx="8" fill="#F7FAFD" stroke="#E2EAF2"/><text x="495" y="194" text-anchor="middle">Auth</text>
+                        <rect x="390" y="214" width="210" height="76" rx="8" fill="#FFF1EB" stroke="#FFB38F"/>
+                        <text x="495" y="238" text-anchor="middle" font-weight="600">Cloud Firestore</text>
+                        <text x="495" y="258" text-anchor="middle" font-size="11.5" fill="#5A6A82">users · content · contentAnswers</text>
+                        <text x="495" y="276" text-anchor="middle" font-size="11.5" fill="#5A6A82">communities · circles · conversations</text>
+                        <rect x="390" y="298" width="210" height="34" rx="8" fill="#F7FAFD" stroke="#E2EAF2"/><text x="495" y="320" text-anchor="middle">Storage</text>
+                    </g>
+
+                    <!-- Functions -->
+                    <rect x="740" y="120" width="240" height="230" rx="18" fill="#1B2A4E"/>
+                    <text x="860" y="152" text-anchor="middle" font-weight="700" font-size="16" fill="#fff">Cloud Functions</text>
+                    <text x="860" y="172" text-anchor="middle" font-size="12" fill="#C9D6EA">Python 3.12</text>
+                    <g font-size="12.5" fill="#fff">
+                        <rect x="758" y="186" width="204" height="30" rx="8" fill="#24365F"/><text x="860" y="206" text-anchor="middle">create_community_rooms</text>
+                        <rect x="758" y="222" width="204" height="30" rx="8" fill="#24365F"/><text x="860" y="242" text-anchor="middle">run_game_schedule (hourly)</text>
+                        <rect x="758" y="258" width="204" height="30" rx="8" fill="#24365F"/><text x="860" y="278" text-anchor="middle">poll_queue · rosters</text>
+                        <rect x="758" y="294" width="204" height="30" rx="8" fill="#24365F"/><text x="860" y="314" text-anchor="middle">notify_* → send_push</text>
+                    </g>
+
+                    <!-- App <-> Firestore -->
+                    <line x1="252" y1="225" x2="366" y2="225" stroke="#5A6A82" stroke-width="2" marker-end="url(#ah)" marker-start="url(#ah)"/>
+                    <text x="309" y="214" text-anchor="middle" font-size="11.5" fill="#5A6A82">reads / writes</text>
+                    <text x="309" y="244" text-anchor="middle" font-size="11.5" fill="#5A6A82">rules-enforced</text>
+                    <!-- App -> callable -->
+                    <path d="M250 300 C 320 300, 330 395, 495 395 L 860 395 L 860 354" fill="none" stroke="#5A6A82" stroke-width="2" marker-end="url(#ah)"/>
+                    <text x="560" y="388" font-size="11.5" fill="#5A6A82">HTTPS and callable functions</text>
+                    <!-- Firestore <-> functions -->
+                    <line x1="622" y1="240" x2="736" y2="240" stroke="#5A6A82" stroke-width="2" marker-end="url(#ah)"/>
+                    <text x="679" y="230" text-anchor="middle" font-size="11.5" fill="#5A6A82">triggers</text>
+                    <line x1="736" y1="280" x2="624" y2="280" stroke="#5A6A82" stroke-width="2" marker-end="url(#ah)"/>
+                    <text x="679" y="298" text-anchor="middle" font-size="11.5" fill="#5A6A82">rooms, queues</text>
+
+                    <!-- Scheduler -->
+                    <rect x="770" y="30" width="180" height="46" rx="12" fill="#fff" stroke="#E2EAF2" stroke-width="2"/>
+                    <text x="860" y="58" text-anchor="middle" font-size="13" font-weight="600" fill="#14213D">Cloud Scheduler</text>
+                    <line x1="860" y1="78" x2="860" y2="116" stroke="#5A6A82" stroke-width="2" marker-end="url(#ah)"/>
+                    <text x="870" y="102" font-size="11.5" fill="#5A6A82">cron</text>
+
+                    <!-- Push path -->
+                    <rect x="400" y="420" width="190" height="40" rx="12" fill="#FFF1EB" stroke="#FF6B35" stroke-width="1.5"/>
+                    <text x="495" y="445" text-anchor="middle" font-size="13" font-weight="600" fill="#14213D">FCM → APNs</text>
+                    <path d="M980 330 C 990 440, 700 440, 594 440" fill="none" stroke="#FF6B35" stroke-width="2" marker-end="url(#ao)"/>
+                    <path d="M398 440 C 160 440, 135 400, 135 354" fill="none" stroke="#FF6B35" stroke-width="2" marker-end="url(#ao)"/>
+                    <text x="230" y="455" font-size="11.5" fill="#FF6B35">push to device</text>
+
+                    <!-- Universal links -->
+                    <rect x="30" y="30" width="210" height="46" rx="12" fill="#fff" stroke="#E2EAF2" stroke-width="2"/>
+                    <text x="135" y="52" text-anchor="middle" font-size="13" font-weight="600" fill="#14213D">iperspective.app/i/…</text>
+                    <text x="135" y="68" text-anchor="middle" font-size="11" fill="#5A6A82">apple-app-site-association</text>
+                    <line x1="135" y1="78" x2="135" y2="116" stroke="#5A6A82" stroke-width="2" marker-end="url(#ah)"/>
+                    <text x="145" y="102" font-size="11.5" fill="#5A6A82">Universal Link opens the app</text>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Decisions -->
+    <section style="padding-top:0">
+        <div class="wrap">
+            <span class="eyebrow">Decisions</span>
+            <h2>Problems worth talking about</h2>
+            <p class="lede" style="margin-bottom:2.2rem">Six decisions that shaped the app, with the tradeoffs behind them.</p>
+
+            <article class="case reveal">
+                <div><div class="label">Data model</div><h3>One write path for every answer</h3></div>
+                <div>
+                    <p>People answer questions in a lot of places: daily questions, community questions, games, and polls shared into a chat. If any of those kept its own table, every comparison in the app would drift from the truth by however much people played that game.</p>
+                    <p>So every answer goes through a single method, <code>QueueService.answer()</code>, which writes the response together with a snapshot of the person's communities at the moment they answered. An earlier version didn't take that snapshot, which made comparing communities after the fact impossible. That lesson shaped this design.</p>
+<pre><span class="k">QueueService</span>.answer()
+  ├─ users/{uid}/queue/…          <span class="c">// marks it answered</span>
+  ├─ contentAnswers/…/{uid}       <span class="c">// response + communities at answer time</span>
+  ├─ users/{uid}/answers/…        <span class="c">// the person's ledger</span>
+  └─ users/{uid}.identity.*       <span class="c">// becomes a matching axis</span></pre>
+                    <p class="outcome">A new game is a new screen, not a new data model, and comparisons stay correct wherever people answer.</p>
+                </div>
+            </article>
+
+            <article class="case reveal">
+                <div><div class="label">Matching</div><h3>Hold everything, split on one thing</h3></div>
+                <div>
+                    <p>Every room comes from one roster shape: fields held constant for everyone, plus at most one field allowed to vary. "Ten Catholics in Ohio" holds religion and location. "Five men and five women, all nurses in Ohio" holds occupation and location and splits on gender. Control every variable except the one you're comparing, and the result means something.</p>
+<pre><span class="k">hold</span>   {occupation: <span class="o">"nursing"</span>, state: <span class="o">"OH"</span>}    <span class="c"># same for everyone</span>
+<span class="k">split</span>  <span class="o">"gender"</span>                                <span class="c"># the one variable</span>
+<span class="k">groups</span> [<span class="o">"male"</span>, <span class="o">"female"</span>]                      <span class="c"># 5 and 5</span></pre>
+                    <p>Seven fields have 127 possible combinations and almost all are empty, so instead of enumerating them the builder scans what's actually present in the population. Any identity question becomes a matching field automatically, which means adding a new matching dimension is just writing a question. No migration and no deploy.</p>
+                    <p class="outcome">Scoring favors splits over holds, because relatability is a shared context plus a difference inside it, not sameness.</p>
+                </div>
+            </article>
+
+            <article class="case reveal">
+                <div><div class="label">Product judgment</div><h3>When the data said no</h3></div>
+                <div>
+                    <p>The first design built a group of people first, then picked a question for that group. With a few dozen early users, and only about one in five profiles listing a gender, that approach produced a poll that reached four people.</p>
+                    <p>Rather than wait for scale, I flipped the order. A question lands in your queue because it matches a community you're in. You answer. Then you see up to five people who answered the same way. Answer-first works with one user.</p>
+                    <p class="outcome">The roster engine still exists and gets more useful as the community grows. The product works today at the size it actually is.</p>
+                </div>
+            </article>
+
+            <article class="case reveal">
+                <div><div class="label">Notifications</div><h3>Push that respects people</h3></div>
+                <div>
+                    <p><b>Direct messages use a request model.</b> Anyone can send a first message, and it waits in the recipient's requests inbox until they accept. While a thread is pending, the function writes one notification document, which shows in the bell and is pushed by a single shared sender, so nobody gets two banners for one event. Once accepted, messages push directly with no bell entry, so a busy chat can't bury everything else.</p>
+                    <p><b>Scheduled jobs group per person.</b> Rooms in a cycle are created and expire together, so someone in six rooms used to get six pushes in the same minute. Now each run collects rooms per user first. One room keeps specific wording and deep-links to that room. Several rooms get one counted digest that lands on the home screen.</p>
+                    <p class="outcome">One push per event per person.</p>
+                </div>
+            </article>
+
+            <article class="case reveal">
+                <div><div class="label">Security</div><h3>Authorization lives in the rules</h3></div>
+                <div>
+                    <p>Circles are private group threads created from a shared answer: you and friends who picked the same option. Membership is the security model. If your uid is in <code>participants</code>, you can read and write. If it isn't, you can't tell the circle exists.</p>
+                    <p>The rules also enforce a floor of two participants, so a circle can't be used as a one-on-one chat that skips the message-request gate. Circle IDs are deterministic, <code>a_{contentId}_{optionId}_{uid}</code>, so tapping "Start a circle" twice reopens the thread instead of creating a duplicate.</p>
+                    <p class="outcome">Tradeoff I chose on purpose: reading a circle that doesn't exist returns permission-denied instead of empty, so the client treats that error as "no circle" rather than leaking which circles exist.</p>
+                </div>
+            </article>
+
+            <article class="case reveal">
+                <div><div class="label">Shipping</div><h3>When the tooling broke</h3></div>
+                <div>
+                    <p><b>Deploys.</b> The Firebase CLI hard-coded a legacy service account name that didn't exist on my project, which blocked every function deploy. I wrote a deploy script that calls <code>gcloud functions deploy</code> directly with explicit runtime, trigger, and build service accounts.</p>
+                    <p><b>A name collision.</b> A backend module called <code>queue.py</code> shadowed Python's standard library. <code>urllib3</code> imports <code>queue</code>, so requests and firebase-admin failed with a circular-import error that named none of them. Renamed to <code>poll_queue.py</code>, with a comment so nobody renames it back.</p>
+                    <p><b>Slow iOS builds.</b> Builds to a physical iPhone had become painfully slow. The causes: Xcode's DerivedData on an aging external drive with a corrupted build database, a denied Local Network permission, and wireless debugging timeouts. Moving DerivedData to the internal SSD and fixing permissions brought build times back to normal.</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- iOS -->
+    <section class="ios-band">
+        <div class="wrap">
+            <span class="eyebrow">For iOS teams</span>
+            <h2>Where iOS fits in</h2>
+            <p class="lede">iPerspective started as a native Swift app before I moved it to Flutter to reach Android. The iOS side is still where most of the platform work lives.</p>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Swift first</h3>
+                    <p>The original prototype was written in Swift. My iOS background covers Swift, UIKit, MVVM, and Combine, and the Flutter code keeps parity with Swift helpers where it matters.</p>
+                </div>
+                <div class="card">
+                    <h3>Shipped through the App Store</h3>
+                    <p>Signing, entitlements, App Store Connect, review, and ongoing releases for a live app with real users.</p>
+                </div>
+                <div class="card">
+                    <h3>Platform integrations</h3>
+                    <p>Sign in with Apple, push through APNs, Universal Links with Associated Domains, and a StoreKit subscription paywall that ships dark behind a remote config flag.</p>
+                </div>
+                <div class="card">
+                    <h3>Build and tooling</h3>
+                    <p>Xcode, CocoaPods, and debugging on physical devices, including tracking down the build slowdown described above.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="cta">
+        <div class="wrap">
+            <div class="box">
+                <h2>Want to talk through any of this?</h2>
+                <p>I'm happy to walk through the code, the data model, or the product decisions.</p>
+                <div class="stores">
+                    <a href="mailto:swynne@iPerspective.app" class="btn btn-orange" data-track="built_email_bottom">swynne@iPerspective.app</a>
+                    <a href="https://github.com/Wynne97" class="btn btn-ghost" style="color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.5)" data-track="built_github">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrap">
+            <div class="bottom" style="margin-top:0;border-top:0;padding-top:0">
+                <span>&copy; 2026 iPerspective. All rights reserved.</span>
+                <span><a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="privacy-policy.html">Privacy</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/site.js"></script>
+</body>
+</html>

@@ -8,16 +8,16 @@
    ============================================ */
 :root {
   /* Color palette */
-  --primary-color: #3498db;
-  --primary-dark: #2980b9;
-  --secondary-color: #2ecc71;
-  --secondary-dark: #27ae60;
-  --accent-color: #9b59b6;
+  --primary-color: #1565C0;
+  --primary-dark: #1B2A4E;
+  --secondary-color: #FF6B35;
+  --secondary-dark: #E4572A;
+  --accent-color: #89CFF0;
   --text-dark: #2c3e50;
   --text-light: #ecf0f1;
   --background-light: #f9f9f9;
   --background-white: #ffffff;
-  --background-gradient: linear-gradient(135deg, #3498db, #2ecc71);
+  --background-gradient: linear-gradient(135deg, #89CFF0, #1B2A4E);
   
   /* Typography */
   --font-primary: 'Inter', 'Helvetica Neue', Arial, sans-serif;

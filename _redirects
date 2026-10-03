@@ -1,3 +1,7 @@
 # Serve the invite page for all short links (SPA-style rewrite)
 /i/*  /invite.html  200
 /invite  /invite.html  200
+
+# Android beta page retired (app is live on Google Play)
+/trial.html  /  301
+/trial  /  301

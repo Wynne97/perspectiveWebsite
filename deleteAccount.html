@@ -208,8 +208,25 @@
     }
     .footer a { color: #90CAF9; text-decoration: none; }
   </style>
+    <script src="js/track.js"></script>
+    <link rel="icon" href="assets/images/logo-mark.png">
+    <link rel="stylesheet" href="css/chrome.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+<header class="ipx-nav">
+    <div class="ipx-wrap">
+        <a href="index.html" class="ipx-logo" aria-label="iPerspective home"><img src="assets/images/logo-wordmark.png" alt="iPerspective" width="166" height="26"></a>
+        <button class="ipx-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        <nav class="ipx-links">
+            <a href="index.html#how">How it works</a>
+            <a href="index.html#try">Try it</a>
+            <a href="built.html">How it's built</a>
+            <a href="about.html">About</a>
+            <a href="index.html#get" class="ipx-btn" data-track="nav_get_app">Get the app</a>
+        </nav>
+    </div>
+</header>
   <div class="container">
     <div class="logo">
       <h1>iPerspective</h1>
@@ -308,6 +325,38 @@
   </div>
 
   <!-- Firebase SDKs (compat for simplicity) -->
+  <footer class="ipx-footer">
+    <div class="ipx-wrap">
+        <div class="ipx-cols">
+            <div>
+                <a href="index.html" class="ipx-logo"><img src="assets/images/logo-wordmark.png" alt="iPerspective" width="153" height="24"></a>
+                <p>Small rooms of people who think like you.<br>Grow your community correctly.</p>
+                <div class="ipx-social">
+                    <a href="https://www.instagram.com/iperspective.app/" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 3.9 2.4 7.2 2.3c1.2-.1 1.6-.1 4.8-.1zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.2 4.4 2.6 6.8 7 7 1.2.1 1.6.1 4.9.1s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.2-4.4-2.6-6.8-7-7C15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.9 1.4 1.4 0 0 0 0-2.9z"/></svg></a>
+                    <a href="https://x.com/iperspectiveap" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.2 2.3h3.4l-7.4 8.4 8.7 11.5h-6.8l-5.3-7-6.1 7H1.3l7.9-9L.8 2.3h7l4.8 6.4 5.6-6.4zm-1.2 17.9h1.9L7.1 4.2H5.1L17 20.2z"/></svg></a>
+                    <a href="https://www.facebook.com/profile.php?id=61584927282195" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22.7 0H1.3C.6 0 0 .6 0 1.3v21.4c0 .7.6 1.3 1.3 1.3h11.5v-9.3H9.7v-3.6h3.1V8.4c0-3.1 1.9-4.8 4.7-4.8 1.3 0 2.5.1 2.8.1v3.2h-1.9c-1.5 0-1.8.7-1.8 1.8v2.3h3.6l-.5 3.6h-3.1V24h6.1c.7 0 1.3-.6 1.3-1.3V1.3C24 .6 23.4 0 22.7 0z"/></svg></a>
+                </div>
+            </div>
+            <div><h4>App</h4><ul>
+                <li><a href="index.html#how">How it works</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="organizations.html">For organizations</a></li>
+            </ul></div>
+            <div><h4>Company</h4><ul>
+                <li><a href="about.html">About</a></li>
+                <li><a href="built.html">How it's built</a></li>
+                <li><a href="mailto:swynne@iPerspective.app">Contact</a></li>
+            </ul></div>
+            <div><h4>Legal</h4><ul>
+                <li><a href="privacy-policy.html">Privacy policy</a></li>
+                <li><a href="csae-policy.html">Child safety</a></li>
+                <li><a href="deleteAccount.html">Delete account</a></li>
+            </ul></div>
+        </div>
+        <div class="ipx-bottom"><span>&copy; 2026 iPerspective. All rights reserved.</span><span>Made in Queens, NY</span></div>
+    </div>
+</footer>
+
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-functions-compat.js"></script>
@@ -450,5 +499,12 @@
       if (e.key === 'Enter') deleteAccount();
     });
   </script>
+<script>
+    (function () {
+        var t = document.querySelector('.ipx-toggle'), l = document.querySelector('.ipx-links');
+        if (!t || !l) return;
+        t.addEventListener('click', function () { var o = l.classList.toggle('ipx-open'); t.setAttribute('aria-expanded', o); });
+    })();
+</script>
 </body>
 </html>
