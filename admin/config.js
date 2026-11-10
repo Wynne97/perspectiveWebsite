@@ -6,10 +6,10 @@
 // General > Your apps > the Web app (add one if there isn't a Web app yet).
 window.ADMIN_CONFIG = {
   firebase: {
-    apiKey: "PASTE_WEB_API_KEY",
+    apiKey: "AIzaSyDOGQ4bXqMxmLucsZUG7-XY6JhD7sF51Po",
     authDomain: "iperspective-app.firebaseapp.com",
     projectId: "iperspective-app",
-    appId: "PASTE_WEB_APP_ID",
+    appId: "1:144447874880:web:96116b6bc17ce4b7e0bca5",
   },
   // gcloud functions describe admin_plans --region=us-central1 --gen2
   //   --format='value(serviceConfig.uri)'   if this one doesn't answer.
