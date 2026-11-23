@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Daily plans · iPerspective admin</title>
+<title>iPerspective admin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -121,12 +121,50 @@
   .note.warn { background: var(--orange-soft); color: #8A3A18; }
   .note.ok { background: var(--green-soft); color: var(--green); }
   .loading { padding: 60px; text-align: center; color: var(--muted); }
+
+  /* Tabs: Plans | System */
+  .tabs { display: flex; gap: 6px; }
+  .tabs button { border-radius: 999px; padding: 6px 14px; font-size: 13px; font-weight: 700;
+                 background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.35); }
+  .tabs button.on { background: #fff; color: var(--navy); border-color: #fff; }
+
+  /* System tab, sectioned like Today */
+  .sys { max-width: 1100px; margin: 0 auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+  .sys .kicker { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+                 font-weight: 800; margin: 0 0 2px; }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-top: 10px; }
+  .tile { border: 1.5px solid var(--line); border-radius: 14px; padding: 12px; background: #fff; }
+  .tile .v { font-size: 26px; font-weight: 800; line-height: 1.1; }
+  .tile .l { font-size: 12px; color: var(--muted); font-weight: 600; }
+  .tile .d { font-size: 12px; font-weight: 700; margin-top: 2px; }
+  .tile .d.up { color: var(--green); } .tile .d.down { color: var(--red); } .tile .d.flat { color: var(--muted); }
+  .tile.star { border-color: var(--navy); box-shadow: 0 0 0 1px var(--navy); }
+  table.t { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 8px; }
+  table.t th { text-align: left; font-size: 12px; color: var(--muted); font-weight: 700; padding: 6px 8px;
+               border-bottom: 1.5px solid var(--line); }
+  table.t td { padding: 7px 8px; border-bottom: 1px solid var(--line); }
+  table.t td.n, table.t th.n { text-align: right; font-variant-numeric: tabular-nums; }
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  .barrow { display: grid; grid-template-columns: 110px 1fr 40px; gap: 8px; align-items: center; font-size: 13px; margin-top: 6px; }
+  .barrow .track { height: 8px; background: var(--bg); border-radius: 4px; overflow: hidden; }
+  .barrow .fill { height: 100%; background: var(--baby); }
+  .barrow .n { text-align: right; font-weight: 700; }
+  details.type { border: 1.5px solid var(--line); border-radius: 12px; padding: 8px 12px; margin-top: 8px; background: #fff; }
+  details.type summary { cursor: pointer; font-weight: 700; }
+  .switch { display: flex; align-items: center; gap: 10px; font-weight: 600; margin-top: 8px; }
+  .switch input { width: 20px; height: 20px; }
+  pre.out { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 12px;
+            font-size: 12px; overflow-x: auto; white-space: pre-wrap; }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>iPerspective <span>· Daily plans</span></h1>
+  <h1>iPerspective <span id="tabTitle">· Daily plans</span></h1>
+  <nav class="tabs hidden" id="tabs" aria-label="Sections">
+    <button id="tabPlans" class="on">Plans</button>
+    <button id="tabSystem">System</button>
+  </nav>
   <span class="who" id="who"></span>
   <button id="signout" class="hidden">Sign out</button>
 </header>
@@ -190,6 +228,21 @@
     </div>
   </div>
 </main>
+
+<!-- System: how the app is doing, laid out like Today in the app.
+     Served by the admin_stats function. Totals only, never people. -->
+<section class="sys hidden" id="system">
+  <div class="row">
+    <div class="grow">
+      <p class="kicker" id="sysWhen">System</p>
+      <h2 style="margin:0">How it's going</h2>
+    </div>
+    <button class="btn ghost" id="sysRefresh">Refresh</button>
+  </div>
+  <div class="loading hidden" id="sysLoading">Adding it up…</div>
+  <div class="note err hidden" id="sysErr"></div>
+  <div id="sysBody"></div>
+</section>
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
@@ -500,6 +553,207 @@
   };
 
   window.addEventListener('beforeunload', (e) => { if (dirty()) { e.preventDefault(); e.returnValue = ''; } });
+})();
+</script>
+
+<script>
+// System tab (admin_stats). Kept separate from the plans script above.
+(function () {
+  const CFG = window.ADMIN_CONFIG;
+  if (!CFG || !CFG.statsUrl || !window.firebase || !firebase.apps.length) return;
+  const auth = firebase.auth();
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const num = (n) => Number(n || 0).toLocaleString('en-US');
+
+  const KIND = {
+    question: 'Question tables', same_today: 'Same today', someone_who_knows: 'Someone who knows',
+    visiting: 'Ask a local', crew: 'Crews', 'round:common_ground': 'Common ground',
+    'round:generations': 'Generations', 'round:across_the_aisle': 'Debate',
+  };
+  const TYPE = {
+    countries: 'Countries', states: 'States and counties', cities: 'Cities and towns',
+    interests: 'Interests', work_industries: 'Occupations', ages: 'Ages', genders: 'Genders',
+  };
+
+  let tab = 'plans';
+  let loaded = false;
+
+  function show(which) {
+    tab = which;
+    $('tabPlans').classList.toggle('on', which === 'plans');
+    $('tabSystem').classList.toggle('on', which === 'system');
+    $('tabTitle').textContent = which === 'plans' ? '· Daily plans' : '· System';
+    $('system').classList.toggle('hidden', which !== 'system');
+    // The plans script shows #app after it loads; hide it while on System.
+    $('app').style.display = which === 'system' ? 'none' : '';
+    if (which === 'system' && !loaded) load();
+  }
+  $('tabPlans').onclick = () => show('plans');
+  $('tabSystem').onclick = () => show('system');
+  $('sysRefresh').onclick = () => load();
+
+  auth.onAuthStateChanged((user) => {
+    $('tabs').classList.toggle('hidden', !user);
+    if (!user) { loaded = false; show('plans'); }
+  });
+
+  async function call(body) {
+    const token = await auth.currentUser.getIdToken();
+    const res = await fetch(CFG.statsUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+      body: JSON.stringify(body),
+    });
+    let out = {};
+    try { out = await res.json(); } catch (_) {}
+    if (!res.ok) throw new Error(out.error || res.statusText);
+    return out;
+  }
+
+  async function load() {
+    $('sysLoading').classList.remove('hidden');
+    $('sysErr').classList.add('hidden');
+    try {
+      const d = await call({ action: 'stats' });
+      loaded = true;
+      $('sysWhen').textContent = 'Updated ' + new Date(d.generatedAt).toLocaleString();
+      $('sysBody').innerHTML = render(d);
+      wire(d);
+    } catch (e) {
+      $('sysErr').textContent = 'Could not load: ' + e.message;
+      $('sysErr').classList.remove('hidden');
+    } finally {
+      $('sysLoading').classList.add('hidden');
+    }
+  }
+
+  function tile(label, cur, prev, star) {
+    const diff = (cur || 0) - (prev || 0);
+    const cls = diff > 0 ? 'up' : diff < 0 ? 'down' : 'flat';
+    const d = prev === undefined ? '' :
+      `<div class="d ${cls}">${diff > 0 ? '+' : ''}${num(diff)} vs last week</div>`;
+    return `<div class="tile${star ? ' star' : ''}"><div class="v">${num(cur)}</div>` +
+           `<div class="l">${esc(label)}</div>${d}</div>`;
+  }
+
+  function bars(rows, key, label) {
+    const max = Math.max(1, ...rows.map((r) => r[key] || 0));
+    return rows.map((r) => `<div class="barrow"><span>${esc(label(r))}</span>` +
+      `<span class="track"><span class="fill" style="width:${(100 * (r[key] || 0)) / max}%;display:block"></span></span>` +
+      `<span class="n">${num(r[key])}</span></div>`).join('');
+  }
+
+  const dayName = (s) => new Date(s + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+
+  function render(d) {
+    const w = d.pulse.thisWeek || {}, l = d.pulse.lastWeek || {};
+    const ppl = d.people, plays = d.plays, pop = d.populations, seat = d.seating;
+
+    const pulse = `<div class="card"><p class="kicker">Up next</p><h3>Pulse</h3>
+      <p class="sub">The last 7 days against the 7 before. "Met again" is the one that matters:
+      pairs who kept each other or sat together twice in two weeks.</p>
+      <div class="tiles">
+        ${tile('Met again', w.metAgain, undefined, true)}
+        ${tile('New people', w.signups, l.signups)}
+        ${tile('Tables formed', w.tables, l.tables)}
+        ${tile('Tables that talked', w.talked, l.talked)}
+        ${tile('Seats taken', w.seated, l.seated)}
+        ${tile('Mutual keeps', w.keeps, l.keeps)}
+        ${tile('Habit check-ins', w.checkins)}
+      </div></div>`;
+
+    const kinds = Object.entries(ppl.byKind || {});
+    const people = `<div class="card"><p class="kicker">Your people</p><h3>Tables this week</h3>
+      ${kinds.length ? `<table class="t"><tr><th>Kind</th><th class="n">Formed</th><th class="n">Talked</th>
+        <th class="n">Seats</th><th class="n">Batched</th></tr>
+        ${kinds.map(([k, v]) => `<tr><td>${esc(KIND[k] || k)}</td><td class="n">${num(v.formed)}</td>
+          <td class="n">${num(v.talked)}</td><td class="n">${num(v.seated)}</td>
+          <td class="n">${num(v.batched)}</td></tr>`).join('')}</table>`
+        : '<div class="empty">No tables this week yet.</div>'}
+      <p class="sub" style="margin-top:12px">Crews this week: <b>${num(ppl.crews)}</b> ·
+        Commitments: <b>${num(ppl.commitments)}</b>, met: <b>${num(ppl.commitmentsMet)}</b></p></div>`;
+
+    const polls = plays.polls || [];
+    const also = `<div class="card"><p class="kicker">Also today</p><h3>What people played</h3>
+      <div class="cols">
+        <div><b>Rounds finished, last 7 days</b>
+          ${(plays.rounds || []).length ? bars(plays.rounds, 'finished', (r) => r.round)
+            : '<div class="empty" style="margin-top:8px">None yet.</div>'}</div>
+        <div><b>Read the Room</b>${bars(plays.readTheRoom || [], 'n', (r) => dayName(r.day))}</div>
+        <div><b>Habit check-ins</b>${bars(plays.checkins || [], 'n', (r) => dayName(r.day))}</div>
+      </div>
+      <div style="margin-top:14px"><b>Planned polls, today and yesterday</b>
+        ${polls.length ? `<table class="t"><tr><th>Day</th><th>Question</th><th class="n">Answers</th></tr>
+          ${polls.map((p) => `<tr><td>${esc(dayName(p.day))}</td><td>${esc(p.prompt)}</td>
+            <td class="n">${num(p.answers)}</td></tr>`).join('')}</table>`
+          : '<div class="empty" style="margin-top:8px">No plan for today or yesterday.</div>'}</div></div>`;
+
+    const types = Object.entries(pop.byType || {});
+    const populations = `<div class="card"><p class="kicker">Yesterday's results</p><h3>Populations</h3>
+      <p class="sub">${num(pop.people)} people · ${num(pop.minors)} under 18 (never seated with strangers).
+        Splits show at 10 members, so communities at 6 to 9 are where one more push pays off.</p>
+      <div class="cols">
+        <div><b>Close to the line (6 to 9)</b>
+          ${(pop.nearTheLine || []).length ? `<table class="t">${pop.nearTheLine.map((c) =>
+            `<tr><td>${esc(c.label)}</td><td style="color:var(--muted)">${esc(TYPE[c.path.split('/')[0]] || '')}</td>
+             <td class="n">${num(c.n)}</td></tr>`).join('')}</table>` : '<div class="empty" style="margin-top:8px">None right now.</div>'}</div>
+        <div><b>Most active this week</b>
+          ${(pop.mostActive || []).length ? `<table class="t"><tr><th>Community</th><th class="n">People</th>
+            <th class="n">Tables</th><th class="n">Messages</th></tr>${pop.mostActive.map((c) =>
+            `<tr><td>${esc(c.label)}</td><td class="n">${num(c.people)}</td><td class="n">${num(c.tables)}</td>
+             <td class="n">${num(c.messages)}</td></tr>`).join('')}</table>` : '<div class="empty" style="margin-top:8px">No activity yet.</div>'}</div>
+      </div>
+      ${types.map(([t, rows]) => `<details class="type"><summary>${esc(TYPE[t] || t)} · ${rows.length}${rows.length >= 25 ? '+' : ''}</summary>
+        ${bars(rows, 'n', (r) => r.label)}</details>`).join('')}</div>`;
+
+    const req = seat.requests || {};
+    const last = seat.lastRun;
+    const seating = `<div class="card"><p class="kicker">Seating</p><h3>Batched tables</h3>
+      <p class="sub">Question tables open at 8 PM, Same today at 10 PM, formed hourly by form_tables.
+        The app reads these switches when it opens.</p>
+      <label class="switch"><input type="checkbox" id="swPolls" ${seat.config.batchPolls ? 'checked' : ''}>
+        Batch question tables (8 PM)</label>
+      <label class="switch"><input type="checkbox" id="swSame" ${seat.config.batchSameToday ? 'checked' : ''}>
+        Batch Same today tables (10 PM)</label>
+      <div class="row" style="margin-top:10px">
+        <button class="btn primary" id="swSave">Save switches</button>
+        <button class="btn ghost" id="dryRun">Dry run now</button>
+        <span id="swMsg" class="sub" style="margin:0"></span>
+      </div>
+      <div class="tiles">
+        ${['waiting', 'seated', 'unmatched', 'skipped', 'cancelled'].map((k) => tile(k[0].toUpperCase() + k.slice(1), req[k])).join('')}
+      </div>
+      <div class="cols" style="margin-top:12px">
+        <div><b>Unmatched by community</b>
+          ${(seat.unmatchedBy || []).length ? bars(seat.unmatchedBy, 'n', (r) => r.label)
+            : '<div class="empty" style="margin-top:8px">Nobody went unmatched.</div>'}</div>
+        <div><b>Last run</b>${last ? `<pre class="out">${esc(JSON.stringify(last, null, 2))}</pre>`
+            : '<div class="empty" style="margin-top:8px">No run yet.</div>'}</div>
+      </div>
+      <pre class="out hidden" id="dryOut"></pre></div>`;
+
+    return pulse + people + also + populations + seating;
+  }
+
+  function wire() {
+    $('swSave').onclick = async () => {
+      $('swMsg').textContent = 'Saving…';
+      try {
+        await call({ action: 'seating', batchPolls: $('swPolls').checked, batchSameToday: $('swSame').checked });
+        $('swMsg').textContent = 'Saved. People see it the next time they open the app.';
+      } catch (e) { $('swMsg').textContent = 'Not saved: ' + e.message; }
+    };
+    $('dryRun').onclick = async () => {
+      $('dryOut').classList.remove('hidden');
+      $('dryOut').textContent = 'Running…';
+      try {
+        const r = await call({ action: 'dry_run' });
+        $('dryOut').textContent = JSON.stringify(r, null, 2);
+      } catch (e) { $('dryOut').textContent = 'Failed: ' + e.message; }
+    };
+  }
 })();
 </script>
 </body>

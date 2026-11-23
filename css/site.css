@@ -242,6 +242,12 @@ input[type=range] { width: 100%; accent-color: var(--orange); height: 28px; }
 }
 .card .ico svg { width: 22px; height: 22px; stroke: var(--blue); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
+/* ---------- Game modes ---------- */
+.modes .mode { text-align: left; }
+.modes .mode .ico { font-size: 1.4rem; }
+.modes .mode .who { margin-top: 12px; font-size: .9rem; }
+.modes .mode .who b { color: var(--navy); }
+
 /* ---------- Builder band ---------- */
 .builder { background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .builder .wrap { display: grid; grid-template-columns: 220px 1fr; gap: 48px; align-items: center; }

@@ -14,4 +14,6 @@ window.ADMIN_CONFIG = {
   // gcloud functions describe admin_plans --region=us-central1 --gen2
   //   --format='value(serviceConfig.uri)'   if this one doesn't answer.
   plansUrl: "https://us-central1-iperspective-app.cloudfunctions.net/admin_plans",
+  // The System tab (admin_stats). Same way to find it if this doesn't answer.
+  statsUrl: "https://us-central1-iperspective-app.cloudfunctions.net/admin_stats",
 };
