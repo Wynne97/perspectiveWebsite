@@ -153,6 +153,15 @@
   details.type summary { cursor: pointer; font-weight: 700; }
   .switch { display: flex; align-items: center; gap: 10px; font-weight: 600; margin-top: 8px; }
   .switch input { width: 20px; height: 20px; }
+  .rm { display: grid; grid-template-columns: 26px 22px 1fr 70px 150px; gap: 8px; align-items: start;
+        padding: 10px 0; border-top: 1px solid var(--line); }
+  .rm.off { opacity: .5; }
+  .rm input[type=text], .rm input[type=number] { width: 100%; box-sizing: border-box; padding: 7px 9px;
+        border: 1px solid var(--line); border-radius: 9px; font: inherit; font-size: 13px; }
+  .rm .t { font-weight: 700; margin-bottom: 4px; }
+  .rm .mv { display: flex; flex-direction: column; gap: 2px; }
+  .rm .mv button { border: 1px solid var(--line); background: #fff; border-radius: 6px; padding: 0; height: 18px; font-size: 10px; }
+  .rm .fn { font-size: 12px; color: var(--muted); }
   pre.out { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 12px;
             font-size: 12px; overflow-x: auto; white-space: pre-wrap; }
 </style>
@@ -734,10 +743,84 @@
       </div>
       <pre class="out hidden" id="dryOut"></pre></div>`;
 
-    return pulse + people + also + populations + seating;
+    const roadmap = `<div class="card" id="roadmapCard"><p class="kicker">Getting started</p>
+      <h3>Roadmap</h3><div class="loading">Loading steps…</div></div>`;
+
+    return pulse + roadmap + people + also + populations + seating;
+  }
+
+  // ---- Getting started roadmap (docs/roadmap_spec.md) ----
+  let steps = [];
+  let fun = {};
+
+  function renderRoadmap(windowLabel) {
+    const total = Object.values(fun)[0]?.of || 0;
+    $('roadmapCard').innerHTML = `<p class="kicker">Getting started</p><h3>Roadmap</h3>
+      <p class="sub">The steps a new person walks through on Today, in order. Each one is an achievement
+        with coins. What a step checks is fixed in the app; you can reorder, reword, change coins
+        or switch steps off. People ${esc(windowLabel || '')}: <b>${num(total)}</b>.</p>
+      ${steps.map((s, i) => {
+        const f = fun[s.id] || { n: 0, of: 0 };
+        const pct = f.of ? Math.round((100 * f.n) / f.of) : 0;
+        return `<div class="rm${s.enabled ? '' : ' off'}">
+          <div class="mv"><button data-up="${i}" ${i ? '' : 'disabled'}>▲</button>
+            <button data-down="${i}" ${i < steps.length - 1 ? '' : 'disabled'}>▼</button></div>
+          <input type="checkbox" data-on="${i}" ${s.enabled ? 'checked' : ''} title="On">
+          <div><input type="text" data-title="${i}" maxlength="60" value="${esc(s.title)}">
+            <input type="text" data-why="${i}" maxlength="140" value="${esc(s.why)}" style="margin-top:4px"></div>
+          <div><input type="number" data-reward="${i}" min="0" max="100" value="${num(s.reward)}" title="Coins"></div>
+          <div class="fn">${num(f.n)} of ${num(f.of)} (${pct}%)
+            <span class="track" style="display:block;height:8px;background:var(--bg);border-radius:4px;margin-top:4px;overflow:hidden">
+            <span style="display:block;height:100%;width:${pct}%;background:var(--baby)"></span></span></div>
+        </div>`;
+      }).join('')}
+      <div class="row" style="margin-top:12px">
+        <button class="btn primary" id="rmSave">Save roadmap</button>
+        <span id="rmMsg" class="sub" style="margin:0"></span></div>`;
+
+    const card = $('roadmapCard');
+    card.querySelectorAll('[data-up]').forEach((b) => b.onclick = () => move(+b.dataset.up, -1));
+    card.querySelectorAll('[data-down]').forEach((b) => b.onclick = () => move(+b.dataset.down, 1));
+    card.querySelectorAll('[data-on]').forEach((b) => b.onchange = () => {
+      steps[+b.dataset.on].enabled = b.checked; renderRoadmap(windowLabel);
+    });
+    const bind = (attr, key, cast) => card.querySelectorAll(`[data-${attr}]`).forEach((b) =>
+      b.oninput = () => { steps[+b.dataset[attr]][key] = cast(b.value); });
+    bind('title', 'title', String);
+    bind('why', 'why', String);
+    bind('reward', 'reward', (v) => Number(v) || 0);
+    $('rmSave').onclick = async () => {
+      $('rmMsg').textContent = 'Saving…';
+      try {
+        const r = await call({ action: 'roadmap_save', steps });
+        steps = r.steps;
+        renderRoadmap(windowLabel);
+        $('rmMsg').textContent = 'Saved. People see it the next time Today loads.';
+      } catch (e) { $('rmMsg').textContent = 'Not saved: ' + e.message; }
+    };
+
+    function move(i, by) {
+      const j = i + by;
+      if (j < 0 || j >= steps.length) return;
+      [steps[i], steps[j]] = [steps[j], steps[i]];
+      renderRoadmap(windowLabel);
+    }
+  }
+
+  async function loadRoadmap() {
+    try {
+      const r = await call({ action: 'roadmap_get' });
+      steps = r.steps || [];
+      fun = Object.fromEntries((r.funnel || []).map((f) => [f.id, f]));
+      renderRoadmap(r.window);
+    } catch (e) {
+      $('roadmapCard').innerHTML = `<p class="kicker">Getting started</p><h3>Roadmap</h3>
+        <div class="note err">Could not load: ${esc(e.message)}</div>`;
+    }
   }
 
   function wire() {
+    loadRoadmap();
     $('swSave').onclick = async () => {
       $('swMsg').textContent = 'Saving…';
       try {
