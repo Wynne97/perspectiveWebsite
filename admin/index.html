@@ -746,7 +746,10 @@
     const roadmap = `<div class="card" id="roadmapCard"><p class="kicker">Getting started</p>
       <h3>Roadmap</h3><div class="loading">Loading steps…</div></div>`;
 
-    return pulse + roadmap + people + also + populations + seating;
+    const habits = `<div class="card" id="habitsCard"><p class="kicker">Habits</p>
+      <h3>Habit catalog</h3><div class="loading">Loading habits…</div></div>`;
+
+    return pulse + roadmap + people + also + habits + populations + seating;
   }
 
   // ---- Getting started roadmap (docs/roadmap_spec.md) ----
@@ -819,8 +822,30 @@
     }
   }
 
+  async function loadHabits() {
+    const card = $('habitsCard');
+    try {
+      const h = await call({ action: 'habits' });
+      const list = (rows) => rows.length
+        ? bars(rows, 'n', (r) => r.title) : '<div class="empty" style="margin-top:8px">None yet.</div>';
+      card.innerHTML = `<p class="kicker">Habits</p><h3>Habit catalog</h3>
+        <p class="sub">People per habit (active habits only). Custom habits are listed once 2 or more
+          people share one, so one person's own goal never shows here. Promote a popular custom one
+          into the catalog in the app's habit_catalog.dart.</p>
+        <div class="cols">
+          <div><b>From the catalog</b>${list(h.catalog || [])}</div>
+          <div><b>Custom, shared by 2+</b>${list(h.custom || [])}
+            <p class="sub" style="margin-top:8px">${num(h.oneOffs)} one-off custom habits.</p></div>
+        </div>`;
+    } catch (e) {
+      card.innerHTML = `<p class="kicker">Habits</p><h3>Habit catalog</h3>
+        <div class="note err">Could not load: ${esc(e.message)}</div>`;
+    }
+  }
+
   function wire() {
     loadRoadmap();
+    loadHabits();
     $('swSave').onclick = async () => {
       $('swMsg').textContent = 'Saving…';
       try {
